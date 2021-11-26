@@ -23,6 +23,8 @@
                      Text="Users"
                      Clicked="user_toolbar_Clicked">
         </ToolbarItem>
+        
+        
 
         <ToolbarItem x:Name="logout_toolbar"
                      Text="Logout"

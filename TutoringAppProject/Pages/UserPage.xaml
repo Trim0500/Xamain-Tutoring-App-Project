@@ -7,7 +7,7 @@
                      Text="Teachers"
                      Clicked="teacher_toolbar_Clicked">
         </ToolbarItem>
-
+       
         <ToolbarItem x:Name="tutor_toolbar"
                      Text="Tutors"
                      Clicked="tutor_toolbar_Clicked">
@@ -17,7 +17,7 @@
                      Text="Students"
                      Clicked="student_toolbar_Clicked">
         </ToolbarItem>
-
+        
         <ToolbarItem x:Name="logout_toolbar"
                      Text="Logout"
                      Clicked="btnLogout_Clicked">

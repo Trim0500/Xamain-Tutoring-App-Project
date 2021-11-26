@@ -10,6 +10,8 @@ namespace TutoringAppProject
     public partial class App : Application
     {
         public static UserDB _userDB = new UserDB();
+        
+        public static SemesterDB _semesterDB = new SemesterDB();
         public static User _currentUser { get; set; }
 
         public App()

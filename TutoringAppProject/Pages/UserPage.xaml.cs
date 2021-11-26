@@ -55,17 +55,17 @@ namespace TutoringAppProject.Pages
 
         private void teacher_toolbar_Clicked(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void tutor_toolbar_Clicked(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void student_toolbar_Clicked(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

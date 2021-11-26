@@ -40,5 +40,10 @@ namespace TutoringAppProject
         {
             await Navigation.PushAsync(new UserList());
         }
+
+        private async void Semester_toolbar_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SemesterCRUDPage());
+        }
     }
 }
