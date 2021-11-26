@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringAppProject.Pages.Login">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" VerticalOptions="Center">
+                <Label Text="Welcome to Pet Clinic!"
+                            FontSize="Large"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center" />
+                <Entry x:Name="user_edit"
+                            Placeholder="Username"
+                            FontSize="Large"/>
+                <Entry x:Name="pass_edit"
+                            Placeholder="Password"
+                            FontSize="Large"
+                            IsPassword="True"/>
+                <Button x:Name="login_btn"
+                            Text="Login"
+                            Font="large"
+                            BackgroundColor="LightBlue"
+                            Clicked="login_btn_Clicked"/>
+                <Button x:Name="register_btn"
+                            Text="Register New User"
+                            Font="large"
+                            BackgroundColor="LightBlue"
+                            Clicked="register_btn_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

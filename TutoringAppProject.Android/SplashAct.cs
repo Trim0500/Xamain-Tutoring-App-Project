@@ -13,7 +13,7 @@ using System.Threading;
 
 namespace TutoringAppProject.Droid
 {
-    [Activity(Label = "TutoringAppProject", Icon = "@mipmap/icon", NoHistory = true, Theme = "@style/SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    [Activity(Label = "TutoringAppProject", Icon = "@mipmap/icon", NoHistory = true, Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class SplashAct : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
