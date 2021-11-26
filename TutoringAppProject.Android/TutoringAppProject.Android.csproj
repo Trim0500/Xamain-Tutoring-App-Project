@@ -87,7 +87,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\edit.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TutoringAppProject\TutoringAppProject.csproj">
       <Project>{9E6969A1-FE8E-4B94-BBBC-4A7B4CAB0CFD}</Project>
@@ -101,6 +103,9 @@
     <AndroidResource Include="Resources\drawable\splash_screen.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
