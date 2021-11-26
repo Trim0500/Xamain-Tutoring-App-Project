@@ -24,8 +24,6 @@
                      Clicked="user_toolbar_Clicked">
         </ToolbarItem>
         
-        
-
         <ToolbarItem x:Name="logout_toolbar"
                      Text="Logout"
                      Clicked="logout_toolbar_Clicked">
@@ -36,6 +34,41 @@
         <Label Text="Welcome to Tutoring!" FontSize="Large"/>
 
         <!-- Provide the semester list here -->
+        <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Semester CRUD Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+             <CollectionView  x:Name="semester_collection_view" ItemsSource="{Binding semesters}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding semesterCode}" FontSize="Small"/>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding semesterName}" TextColor="Silver" FontSize="Small"/>
+                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding semesterYear}" TextColor="Silver" FontSize="Small"/>
+                                    <Image Source="edit.png" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" HeightRequest="20" WidthRequest="20">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="key_tap" Tapped="key_tap_Tapped" CommandParameter="{Binding key}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            <Button x:Name="Add_Semester" Text="Add" FontSize="Large" Clicked="Button_OnClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
     </StackLayout>
 
 </ContentPage>
