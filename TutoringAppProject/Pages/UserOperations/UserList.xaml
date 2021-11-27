@@ -1,45 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.UserList">
+             x:Class="TutoringAppProject.Pages.UserOperations.UserList">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="add_btn" Text="Add" Clicked="add_btn_Clicked" />
-        <ToolbarItem x:Name="update_btn" Text="Update" Clicked="update_btn_Clicked" />
-        <ToolbarItem x:Name="delete_btn" Text="Delete" Clicked="delete_btn_Clicked" />
-        <ToolbarItem x:Name="back_btn" Text="Back" Clicked="back_btn_Clicked" />
+        <ToolbarItem x:Name="AddBtn" Text="Add" Clicked="add_btn_Clicked" />
+        <ToolbarItem x:Name="UpdateBtn" Text="Update" Clicked="update_btn_Clicked" />
+        <ToolbarItem x:Name="DeleteBtn" Text="Delete" Clicked="delete_btn_Clicked" />
+        <ToolbarItem x:Name="BackBtn" Text="Back" Clicked="back_btn_Clicked" />
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Entry x:Name="key_edit"
+                <Entry x:Name="KeyEdit"
                         Placeholder="Enter a row key (update)"
                         FontSize="Large"/>
 
-                <Entry x:Name="user_edit"
+                <Entry x:Name="UserEdit"
                         Placeholder="Enter a username"
                         FontSize="Large"/>
 
-                <Entry x:Name="pass_edit"
+                <Entry x:Name="PassEdit"
                         Placeholder="Enter a password"
                         FontSize="Large"
                         IsPassword="True"/>
 
-                <Entry x:Name="fName_edit"
+                <Entry x:Name="FNameEdit"
                         Placeholder="Enter your first name"
                         FontSize="Large"/>
 
-                <Entry x:Name="lName_edit"
+                <Entry x:Name="LNameEdit"
                         Placeholder="Enter your last name"
                         FontSize="Large"/>
 
-                <Label x:Name="role_lbl" Text="Role:"/>
+                <Label x:Name="RoleLbl" Text="Role:"/>
 
-                <RadioButton x:Name="teacher_rad_btn" Content="Teacher" GroupName="role_rad_btns"/>
-                <RadioButton x:Name="tutor_rad_btn" Content="Tutor" GroupName="role_rad_btns"/>
-                <RadioButton x:Name="student_rad_btn" Content="Student" GroupName="role_rad_btns"/>
+                <RadioButton x:Name="TeacherRadBtn" Content="Teacher" GroupName="role_rad_btns"/>
+                <RadioButton x:Name="TutorRadBtn" Content="Tutor" GroupName="role_rad_btns"/>
+                <RadioButton x:Name="StudentRadBtn" Content="Student" GroupName="role_rad_btns"/>
 
-                <CollectionView  x:Name="user_list_collectionView" ItemsSource="{Binding users}">
+                <CollectionView  x:Name="UserListCollectionView" ItemsSource="{Binding users}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>

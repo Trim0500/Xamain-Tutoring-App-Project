@@ -2,10 +2,12 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.CourseList">
+             x:Class="TutoringAppProject.Pages.SemesterList">
     <ContentPage.Content>
-        <StackLayout>
-            <CollectionView  x:Name="course_collection_view" ItemsSource="{Binding semesters}">
+       <StackLayout>
+        <Label Text="Welcome to Tutoring!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+        <!-- Provide the semester list here -->
+        <CollectionView  x:Name="SemesterCollectionView" ItemsSource="{Binding semesters}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
@@ -23,16 +25,18 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Column="0" Text="{Binding courseCode}" FontSize="Small"/>
-                            <Label Grid.Column="1" Text="{Binding courseName}" TextColor="Silver" FontSize="Small"/>
-                            <Image Source="edit.png" Grid.Column="2"  HeightRequest="20" WidthRequest="20">
+                            <Label Grid.Column="0" Text="{Binding semesterCode}" FontSize="Small"/>
+                            <Label Grid.Column="1" Text="{Binding semesterSeason}" TextColor="Silver" FontSize="Small"/>
+                            <Label Grid.Column="2" Text="{Binding semesterYear}" TextColor="Silver" FontSize="Small"/>
+                            <Image Source="edit.png" Grid.Column="3"  HeightRequest="20" WidthRequest="20">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer x:Name="key_tap_update" Tapped="key_tap_Tapped_update" CommandParameter="{Binding key}"/>
                                 </Image.GestureRecognizers>
                             </Image>
-                            <Image Source="delete.png" Grid.Column="3"  HeightRequest="20" WidthRequest="20">
+                            <Image Source="delete.png" Grid.Column="4"  HeightRequest="20" WidthRequest="20">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer x:Name="key_tap_delete" Tapped="key_tap_Tapped_delete" CommandParameter="{Binding key}"/>
                                 </Image.GestureRecognizers>
@@ -42,7 +46,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button x:Name="Add_Class" Text="Add" FontSize="Large" Clicked="Button_OnClicked"/>
-        </StackLayout>
+        <Button x:Name="AddSemester" Text="Add" FontSize="Large" Clicked="Button_OnClicked"/>
+       </StackLayout>
     </ContentPage.Content>
 </ContentPage>

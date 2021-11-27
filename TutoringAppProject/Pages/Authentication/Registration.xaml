@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.Registration">
+             x:Class="TutoringAppProject.Pages.Authentication.Registration">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20" VerticalOptions="Center">
-                <Label x:Name="lbl_header" Text="Welcome to the Registration Page!"
+                <Label x:Name="LblHeader" Text="Welcome to the Registration Page!"
                         FontSize="Large"
                         VerticalOptions="Center"
                         HorizontalOptions="Center" />
-                <Entry x:Name="user_edit"
+                <Entry x:Name="UserEdit"
                         Placeholder="Username"
                         FontSize="Large"/>
-                <Entry x:Name="pass_edit"
+                <Entry x:Name="PassEdit"
                         Placeholder="Password"
                         FontSize="Large"
                         IsPassword="True"/>
-                <Entry x:Name="fName_edit"
+                <Entry x:Name="FNameEdit"
                         Placeholder="FirstName"
                         FontSize="Large"/>
-                <Entry x:Name="lName_edit"
+                <Entry x:Name="LNameEdit"
                         Placeholder="LastName"
                         FontSize="Large"/>
-                <Entry x:Name="email_edit"
+                <Entry x:Name="EmailEdit"
                         Placeholder="Email"
                         FontSize="Large"/>
-                <Entry x:Name="phone_edit"
+                <Entry x:Name="PhoneEdit"
                         Placeholder="Phone Number"
                         FontSize="Large"/>
-                <Button x:Name="register_btn"
+                <Button x:Name="RegisterBtn"
                         Text="Register"
                         Font="large"
                         BackgroundColor="LightBlue"

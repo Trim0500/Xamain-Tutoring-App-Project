@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TutoringAppProject.Models;
-using Xamarin.Forms;
+using TutoringAppProject.Pages.UserOperations;
 using Xamarin.Forms.Xaml;
 
-namespace TutoringAppProject.Pages
+namespace TutoringAppProject.Pages.Authentication
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Login : ContentPage
+    public partial class Login
     {
         public Login()
         {
@@ -25,10 +22,10 @@ namespace TutoringAppProject.Pages
 
         private async void login_btn_Clicked(object sender, EventArgs e)
         {
-            String userName = user_edit.Text;
-            String password = pass_edit.Text;
+            String userName = UserEdit.Text;
+            String password = PassEdit.Text;
 
-            if (string.IsNullOrWhiteSpace(user_edit.Text) || string.IsNullOrWhiteSpace(pass_edit.Text))
+            if (string.IsNullOrWhiteSpace(UserEdit.Text) || string.IsNullOrWhiteSpace(PassEdit.Text))
             {
                 await DisplayActionSheet("Error", "Cancel", null, "Missing Fields, Please fill out properly.");
                 return;
@@ -69,7 +66,6 @@ namespace TutoringAppProject.Pages
             else
             {
                 await DisplayAlert("Login Failed", "Incorrect username or password", "OK");
-                return;
             }
         }
 
@@ -78,13 +74,14 @@ namespace TutoringAppProject.Pages
             List<User> userList = await App._userDB.ReadAll();
             if (userList.Count == 0)
             {
-                User newUser = new User();
-
-                newUser.userName = "Trim";
-                newUser.password = "TrLa0519.";
-                newUser.firstName = "Tristan";
-                newUser.lastName = "Lafleur";
-                newUser.role = "admin";
+                User newUser = new User
+                {
+                    userName = "Trim",
+                    password = "TrLa0519.",
+                    firstName = "Tristan",
+                    lastName = "Lafleur",
+                    role = "admin"
+                };
 
                 var isSaved = await App._userDB.Create(newUser);
 

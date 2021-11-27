@@ -17,17 +17,41 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Pages\Login.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Registration.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\UserList.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\UserPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
+    <Compile Update="Pages\AdminOperations\CourseRegistration.xaml.cs">
+      <DependentUpon>CourseRegistration.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\CourseList.xaml.cs">
+      <DependentUpon>CourseList.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\SemesterList.xaml.cs">
+      <DependentUpon>SemesterList.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\SemesterRegistration.xaml.cs">
+      <DependentUpon>SemesterRegistration.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\AdminHomePage.xaml.cs">
+      <DependentUpon>AdminHomePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Authentication\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Authentication\Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\UserOperations\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\UserOperations\UserList.xaml.cs">
+      <DependentUpon>UserList.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TutoringAppProject.Models;
+using TutoringAppProject.Pages.UserOperations;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SemesterList : ContentPage
+    public partial class SemesterList
     {
         public SemesterList()
         {
@@ -20,7 +18,7 @@ namespace TutoringAppProject.Pages
         protected override async void OnAppearing()
         {
             List<Semester> semesters = await App._semesterDB.ReadAll();
-            semester_collection_view.ItemsSource = semesters;
+            SemesterCollectionView.ItemsSource = semesters;
         }
 
         private void teacher_toolbar_Clicked(object sender, EventArgs e)

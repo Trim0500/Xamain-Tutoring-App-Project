@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TutoringAppProject.Models;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SemesterRegistration : ContentPage
+    public partial class SemesterRegistration
     {
-        Semester _semester;
+        private readonly Semester _semester;
         public SemesterRegistration()
         {
             InitializeComponent();

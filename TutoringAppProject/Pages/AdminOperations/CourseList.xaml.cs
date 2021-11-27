@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TutoringAppProject.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,7 +7,7 @@ using Xamarin.Forms.Xaml;
 namespace TutoringAppProject.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CourseList : ContentPage
+    public partial class CourseList
     {
         public CourseList()
         {
@@ -20,7 +17,7 @@ namespace TutoringAppProject.Pages
         protected override async void OnAppearing()
         {
             List<Course> semesters = await App._courseDB.ReadAll();
-            course_collection_view.ItemsSource = semesters;
+            CourseCollectionView.ItemsSource = semesters;
         }
 
         private async void key_tap_Tapped_update(object sender, EventArgs e)

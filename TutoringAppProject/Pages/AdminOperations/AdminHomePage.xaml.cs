@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TutoringAppProject.Models;
-using Xamarin.Forms;
+using TutoringAppProject.Pages.UserOperations;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AdminHomePage : ContentPage
+    public partial class AdminHomePage
     {
         public AdminHomePage()
         {

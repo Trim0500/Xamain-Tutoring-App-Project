@@ -4,27 +4,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TutoringAppProject.Pages.AdminHomePage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="teacher_toolbar"
+        <ToolbarItem x:Name="TeacherToolbar"
                      Text="Teachers"
                      Clicked="teacher_toolbar_Clicked">
         </ToolbarItem>
 
-        <ToolbarItem x:Name="tutor_toolbar"
+        <ToolbarItem x:Name="TutorToolbar"
                      Text="Tutors"
                      Clicked="tutor_toolbar_Clicked">
         </ToolbarItem>
 
-        <ToolbarItem x:Name="student_toolbar"
+        <ToolbarItem x:Name="StudentToolbar"
                      Text="Students"
                      Clicked="student_toolbar_Clicked">
         </ToolbarItem>
 
-        <ToolbarItem x:Name="user_toolbar"
+        <ToolbarItem x:Name="UserToolbar"
                      Text="Users"
                      Clicked="user_toolbar_Clicked">
         </ToolbarItem>
 
-        <ToolbarItem x:Name="logout_toolbar"
+        <ToolbarItem x:Name="LogoutToolbar"
                      Text="Logout"
                      Clicked="logout_toolbar_Clicked">
         </ToolbarItem>
@@ -33,7 +33,7 @@
     <StackLayout>
         <Label Text="Welcome to Admin Page!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
         <!-- Provide the semester list here -->
-        <Button x:Name="Semester_List" Text="Semester List" FontSize="Large" Clicked="Button_OnClicked_Semester_List"/>
-        <Button x:Name="Course_List" Text="Course List" FontSize="Large" Clicked="Button_OnClicked_Class_List"/>
+        <Button x:Name="SemesterList" Text="Semester List" FontSize="Large" Clicked="Button_OnClicked_Semester_List"/>
+        <Button x:Name="CourseList" Text="Course List" FontSize="Large" Clicked="Button_OnClicked_Class_List"/>
     </StackLayout>
 </ContentPage>

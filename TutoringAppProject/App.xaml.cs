@@ -2,6 +2,7 @@
 using TutoringAppProject.DB;
 using TutoringAppProject.Models;
 using TutoringAppProject.Pages;
+using TutoringAppProject.Pages.Authentication;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
