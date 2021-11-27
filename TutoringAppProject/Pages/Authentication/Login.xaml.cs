@@ -24,6 +24,7 @@ namespace TutoringAppProject.Pages.Authentication
         {
             var userName = UserEdit.Text;
             var password = PassEdit.Text;
+            App._currentUser = null;
 
             if (string.IsNullOrWhiteSpace(UserEdit.Text) || string.IsNullOrWhiteSpace(PassEdit.Text))
             {
