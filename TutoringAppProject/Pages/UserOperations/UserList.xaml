@@ -44,23 +44,23 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <Grid>
+                                <Grid Padding="6" BackgroundColor="white" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
-
-                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding userName}" FontSize="Small"/>
-                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding email}" TextColor="Silver" FontSize="Small"/>
-                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding lastName}" TextColor="Silver" FontSize="Small"/>
-                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding role}" TextColor="Silver" FontSize="Small"/>
-                                    <Image Source="edit.png" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" HeightRequest="20" WidthRequest="20">
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding userName}" BackgroundColor="White" FontSize="Small"/>
+                                    <!--<Label Grid.Row="0" Grid.Column="1" Text="{Binding email}" BackgroundColor="White" TextColor="Black" FontSize="Small"/>-->
+                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding lastName}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
+                                    <Label Grid.Row="0" Grid.RowSpan="2" VerticalTextAlignment="Center" Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding role}" BackgroundColor="AliceBlue" TextColor="black" FontSize="Small"/>
+                                    <Image Source="edit.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" Grid.RowSpan="2" HeightRequest="20" WidthRequest="20">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer x:Name="key_tap" Tapped="key_tap_Tapped" CommandParameter="{Binding key}"/>
                                         </Image.GestureRecognizers>
