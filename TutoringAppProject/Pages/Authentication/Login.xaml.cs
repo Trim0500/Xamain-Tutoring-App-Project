@@ -22,8 +22,8 @@ namespace TutoringAppProject.Pages.Authentication
 
         private async void login_btn_Clicked(object sender, EventArgs e)
         {
-            String userName = UserEdit.Text;
-            String password = PassEdit.Text;
+            var userName = UserEdit.Text;
+            var password = PassEdit.Text;
 
             if (string.IsNullOrWhiteSpace(UserEdit.Text) || string.IsNullOrWhiteSpace(PassEdit.Text))
             {
@@ -69,42 +69,40 @@ namespace TutoringAppProject.Pages.Authentication
             }
         }
 
-        async void CreateAdmin()
+        private async void CreateAdmin()
         {
-            List<User> userList = await App._userDB.ReadAll();
-            if (userList.Count == 0)
+            var userList = await App._userDB.ReadAll();
+            if (userList.Count != 0) return;
+            var newUser = new User
             {
-                User newUser = new User
-                {
-                    userName = "Trim",
-                    password = "TrLa0519.",
-                    firstName = "Tristan",
-                    lastName = "Lafleur",
-                    role = "admin"
-                };
+                userName = "Trim",
+                password = "TrLa0519.",
+                firstName = "Tristan",
+                lastName = "Lafleur",
+                role = "admin"
+            };
 
-                var isSaved = await App._userDB.Create(newUser);
+            var isSaved = await App._userDB.Create(newUser);
 
-                if (isSaved)
-                {
-                    await DisplayAlert("Success", "Saved", "Cancel");
-                }
-                else
-                {
-                    await DisplayAlert("Failed", "Did not save", "Cancel");
-                }
-
-                //await userDB.Create(new User
-                //{
-                //    userName = "Trim",
-                //    password = "TrLa0519.",
-                //    firstName = "Tristan",
-                //    lastName = "Lafleur",
-                //    role = "admin",
-                //    email = "tristanblacklafleur@hotmail.ca",
-                //    phoneNum = "(438) 526-5985"
-                //});
+            if (isSaved)
+            {
+                await DisplayAlert("Success", "Saved", "Cancel");
             }
+            else
+            {
+                await DisplayAlert("Failed", "Did not save", "Cancel");
+            }
+
+            //await userDB.Create(new User
+            //{
+            //    userName = "Trim",
+            //    password = "TrLa0519.",
+            //    firstName = "Tristan",
+            //    lastName = "Lafleur",
+            //    role = "admin",
+            //    email = "tristanblacklafleur@hotmail.ca",
+            //    phoneNum = "(438) 526-5985"
+            //});
         }
     }
 }

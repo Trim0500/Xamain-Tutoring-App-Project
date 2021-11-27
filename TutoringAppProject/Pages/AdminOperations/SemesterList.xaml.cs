@@ -67,8 +67,6 @@ namespace TutoringAppProject.Pages
             await App._semesterDB.Delete(key);
 
             await DisplayAlert("Delete", "Semester Deleted with key: " + key, "OK");
-
-            await Navigation.PopAsync();
         }
     }
 }
