@@ -26,8 +26,8 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Column="0" Text="{Binding courseCode}" FontSize="Small"/>
-                            <Label Grid.Column="1" Text="{Binding courseName}" TextColor="Silver" FontSize="Small"/>
+                                <Label Grid.Column="0" Text="{Binding courseCode}" BackgroundColor="White" TextColor="Black" FontSize="Small"/>
+                                <Label Grid.Column="1" Text="{Binding courseName}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
                             <Image Source="edit.png" Grid.Column="2"  HeightRequest="20" WidthRequest="20">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer x:Name="key_tap_update" Tapped="key_tap_Tapped_update" CommandParameter="{Binding key}"/>

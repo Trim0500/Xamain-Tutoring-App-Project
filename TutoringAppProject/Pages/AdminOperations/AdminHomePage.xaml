@@ -25,16 +25,16 @@
                      Clicked="user_toolbar_Clicked">
         </ToolbarItem>
 
-        <ToolbarItem x:Name="LogoutToolbar"
+        <ToolbarItem x:Name="LogoutToolbar" 
                      Text="Logout"
                      Clicked="logout_toolbar_Clicked">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <StackLayout>
-        <Label Text="Welcome to Admin Page!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+        <Label Text="Welcome to the Admin Page!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
         <!-- Provide the semester list here -->
-        <Button x:Name="SemesterList" Text="Semester List" FontSize="Large" Clicked="Button_OnClicked_Semester_List"/>
-        <Button x:Name="CourseList" Text="Course List" FontSize="Large" Clicked="Button_OnClicked_Class_List"/>
+        <Button x:Name="SemesterList" Text="Semester List" BackgroundColor="AliceBlue"  FontSize="Large" Clicked="Button_OnClicked_Semester_List"/>
+        <Button x:Name="CourseList" Text="Course List" BackgroundColor="AliceBlue" FontSize="Large" Clicked="Button_OnClicked_Class_List"/>
     </StackLayout>
 </ContentPage>
