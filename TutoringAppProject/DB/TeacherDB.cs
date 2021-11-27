@@ -1,23 +1,22 @@
-﻿using Firebase.Database;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Firebase.Database;
+using Newtonsoft.Json;
 using TutoringAppProject.Models;
 
-namespace TeacheringAppProject.DB
+namespace TutoringAppProject.DB
 {
-    public class TeacherDB
+    public class TeacherDb
     {
-        FirebaseClient client = new FirebaseClient(
+        readonly FirebaseClient _client = new FirebaseClient(
             "https://xamarin-tutoring-teachers-default-rtdb.firebaseio.com/"
         );
 
         public async Task<bool> Create(Teacher teacher)
         {
-            var data = await client.Child(nameof(Teacher)).PostAsync(JsonConvert.SerializeObject(teacher));
+            var data = await _client.Child(nameof(Teacher)).PostAsync(JsonConvert.SerializeObject(teacher));
 
             if (!String.IsNullOrEmpty(data.Key))
             {
@@ -31,7 +30,7 @@ namespace TeacheringAppProject.DB
 
         public async Task<List<Teacher>> ReadAll()
         {
-            return (await client.Child(nameof(Teacher)).OnceAsync<Teacher>()).Select(item => new Teacher
+            return (await _client.Child(nameof(Teacher)).OnceAsync<Teacher>()).Select(item => new Teacher
             {
                 key = item.Key,
                 firstName = item.Object.firstName,
@@ -44,13 +43,13 @@ namespace TeacheringAppProject.DB
 
         public async Task<Teacher> ReadById(string key)
         {
-            return await client.Child(nameof(Teacher) + "/" + key).OnceSingleAsync<Teacher>();
+            return await _client.Child(nameof(Teacher) + "/" + key).OnceSingleAsync<Teacher>();
         }
 
         public async Task<bool> Update(Teacher teacher)
         {
 
-            await client.Child(nameof(Teacher) + "/" + teacher.key).PutAsync(JsonConvert.SerializeObject(teacher));
+            await _client.Child(nameof(Teacher) + "/" + teacher.key).PutAsync(JsonConvert.SerializeObject(teacher));
 
             return true;
 
@@ -58,7 +57,7 @@ namespace TeacheringAppProject.DB
 
         public async Task<bool> Delete(string key)
         {
-            await client.Child(nameof(Teacher) + "/" + key).DeleteAsync();
+            await _client.Child(nameof(Teacher) + "/" + key).DeleteAsync();
             return true;
         }
     }

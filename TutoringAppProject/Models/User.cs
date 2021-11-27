@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TutoringAppProject.Models
+﻿namespace TutoringAppProject.Models
 {
     public class User
     {
