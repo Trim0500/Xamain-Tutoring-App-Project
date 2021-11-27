@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringAppProject.Pages.SemesterRegistration">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Semester Add Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Entry x:Name="SemesterCode" Placeholder="Semester Code" FontSize="Large"></Entry>
+            <Entry x:Name="SemesterSeason" Placeholder="Semester Season" FontSize="Large"></Entry>
+            <Entry x:Name="SemesterYear" Placeholder="Semester Year" FontSize="Large"></Entry>
+            <Button x:Name="SemesterAddButton" Text="Add Semester" Clicked="AddSemester" VerticalOptions="End" />
+            <Button x:Name="SemesterUpdateButton" Text="Update Semester" Clicked="UpdateSemester" VerticalOptions="End"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

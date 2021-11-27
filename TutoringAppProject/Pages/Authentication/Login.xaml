@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.Login">
+             x:Class="TutoringAppProject.Pages.Authentication.Login">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20" VerticalOptions="Center">
@@ -9,19 +9,19 @@
                             FontSize="Large"
                             VerticalOptions="Center"
                             HorizontalOptions="Center" />
-                <Entry x:Name="user_edit"
+                <Entry x:Name="UserEdit"
                             Placeholder="Username"
                             FontSize="Large"/>
-                <Entry x:Name="pass_edit"
+                <Entry x:Name="PassEdit"
                             Placeholder="Password"
                             FontSize="Large"
                             IsPassword="True"/>
-                <Button x:Name="login_btn"
+                <Button x:Name="LoginBtn"
                             Text="Login"
                             Font="large"
                             BackgroundColor="LightBlue"
                             Clicked="login_btn_Clicked"/>
-                <Button x:Name="register_btn"
+                <Button x:Name="RegisterBtn"
                             Text="Register New User"
                             Font="large"
                             BackgroundColor="LightBlue"

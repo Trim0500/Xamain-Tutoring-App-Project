@@ -2,6 +2,7 @@
 using TutoringAppProject.DB;
 using TutoringAppProject.Models;
 using TutoringAppProject.Pages;
+using TutoringAppProject.Pages.Authentication;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +11,11 @@ namespace TutoringAppProject
     public partial class App : Application
     {
         public static UserDB _userDB = new UserDB();
+        
+        public static SemesterDB _semesterDB = new SemesterDB();
+
+        public static CourseDB _courseDB = new CourseDB();
+
         public static User _currentUser { get; set; }
 
         public App()
