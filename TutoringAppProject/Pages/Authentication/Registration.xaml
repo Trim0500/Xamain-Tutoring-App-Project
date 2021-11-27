@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.Authentication.Registration">
+             x:Class="TutoringAppProject.Pages.Authentication.Registration"
+             BackgroundImageSource="background2.jpg">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="20" VerticalOptions="Center">
-                <Label x:Name="LblHeader" Text="Welcome to the Registration Page!"
+            <StackLayout Padding="0" VerticalOptions="Center">
+                <Image Source="tutoring.jfif" VerticalOptions="Start" />
+                <Label x:Name="LblHeader" Text="Register Now and join the Infinity Family!"
                         FontSize="Large"
                         VerticalOptions="Center"
-                        HorizontalOptions="Center" />
+                        HorizontalOptions="Center"
+                         HorizontalTextAlignment="Center"/>
                 <Entry x:Name="UserEdit"
                         Placeholder="Username"
                         FontSize="Large"/>
@@ -27,7 +30,8 @@
                         FontSize="Large"/>
                 <Entry x:Name="PhoneEdit"
                         Placeholder="Phone Number"
-                        FontSize="Large"/>
+                        FontSize="Large"
+                        Keyboard="Telephone"/>
                 <Button x:Name="RegisterBtn"
                         Text="Register"
                         Font="large"

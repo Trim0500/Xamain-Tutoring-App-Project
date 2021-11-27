@@ -20,9 +20,10 @@ namespace TutoringAppProject
 
         public App()
         {
+       
             InitializeComponent();
-
             MainPage = new NavigationPage(new Login());
+
         }
 
         protected override void OnStart()
