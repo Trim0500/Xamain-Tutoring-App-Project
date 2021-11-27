@@ -1,36 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.MainPage">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="teacher_toolbar"
-                     Text="Teachers"
-                     Clicked="teacher_toolbar_Clicked">
-        </ToolbarItem>
-
-        <ToolbarItem x:Name="tutor_toolbar"
-                     Text="Tutors"
-                     Clicked="tutor_toolbar_Clicked">
-        </ToolbarItem>
-
-        <ToolbarItem x:Name="student_toolbar"
-                     Text="Students"
-                     Clicked="student_toolbar_Clicked">
-        </ToolbarItem>
-
-        <ToolbarItem x:Name="user_toolbar"
-                     Text="Users"
-                     Clicked="user_toolbar_Clicked">
-        </ToolbarItem>
-        
-        <ToolbarItem x:Name="logout_toolbar"
-                     Text="Logout"
-                     Clicked="logout_toolbar_Clicked">
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
-
-    <StackLayout>
+             x:Class="TutoringAppProject.Pages.SemesterList">
+    <ContentPage.Content>
+       <StackLayout>
         <Label Text="Welcome to Tutoring!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
         <!-- Provide the semester list here -->
         <CollectionView  x:Name="semester_collection_view" ItemsSource="{Binding semesters}">
@@ -72,8 +46,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Button x:Name="Add_Semester" Text="Add" FontSize="Large" Clicked="Button_OnClicked"/>
-        <Button x:Name="Class_Page" Text="Course_Page" FontSize="Large" Clicked="Button_OnClicked_Class_Page"/>
-    </StackLayout>
-
-
+       </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

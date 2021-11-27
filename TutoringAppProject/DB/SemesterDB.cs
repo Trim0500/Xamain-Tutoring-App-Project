@@ -42,7 +42,13 @@ namespace TutoringAppProject.DB
 
         public async Task<Semester> ReadById(string key)
         {
-            return await client.Child(nameof(Semester) + "/" + key).OnceSingleAsync<Semester>();
+            return (await client.Child(nameof(Semester)).OnceAsync<Semester>()).Select(item => new Semester()
+            {
+                key = item.Key,
+                semesterCode = item.Object.semesterCode,
+                semesterSeason = item.Object.semesterSeason,
+                semesterYear = item.Object.semesterYear
+            }).FirstOrDefault(i => i.key == key);
         }
 
         public async Task<bool> Update(Semester semester)

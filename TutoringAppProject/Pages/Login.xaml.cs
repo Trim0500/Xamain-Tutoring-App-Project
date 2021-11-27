@@ -58,7 +58,7 @@ namespace TutoringAppProject.Pages
                 if (App._currentUser.role == "admin")
                 {
                     await DisplayAlert("Welcome Admin!", "Login successful for Trim!", "OK");
-                    await Navigation.PushAsync(new MainPage());
+                    await Navigation.PushAsync(new AdminHomePage());
                 }
                 else
                 {

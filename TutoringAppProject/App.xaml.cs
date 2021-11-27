@@ -12,6 +12,9 @@ namespace TutoringAppProject
         public static UserDB _userDB = new UserDB();
         
         public static SemesterDB _semesterDB = new SemesterDB();
+
+        public static CourseDB _courseDB = new CourseDB();
+
         public static User _currentUser { get; set; }
 
         public App()

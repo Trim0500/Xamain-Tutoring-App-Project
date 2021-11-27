@@ -7,9 +7,10 @@
         <StackLayout>
             <Label Text="Semester Add Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
             <Entry x:Name="SemesterCode" Placeholder="Semester Code" FontSize="Large"></Entry>
-            <Entry x:Name="SemesterName" Placeholder="Semester Name" FontSize="Large"></Entry>
-            <Entry x:Name="SemesterYear" Placeholder="2021" FontSize="Large"></Entry>
-            <Button Text="Add Semester" Clicked="AddSemester" VerticalOptions="End" />
+            <Entry x:Name="SemesterSeason" Placeholder="Semester Season" FontSize="Large"></Entry>
+            <Entry x:Name="SemesterYear" Placeholder="Semester Year" FontSize="Large"></Entry>
+            <Button x:Name="SemesterAddButton" Text="Add Semester" Clicked="AddSemester" VerticalOptions="End" />
+            <Button x:Name="SemesterUpdateButton" Text="Update Semester" Clicked="UpdateSemester" VerticalOptions="End"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

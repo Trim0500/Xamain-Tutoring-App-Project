@@ -1,26 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TutoringAppProject.Models;
-using TutoringAppProject.Pages;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace TutoringAppProject
+namespace TutoringAppProject.Pages
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SemesterList : ContentPage
     {
-        User user = App._currentUser;
-        public MainPage()
+        public SemesterList()
         {
             InitializeComponent();
-
-            if (user.role != "admin")
-            {
-                Add_Semester.IsEnabled = false;
-            }
         }
 
         protected override async void OnAppearing()
@@ -31,7 +25,7 @@ namespace TutoringAppProject
 
         private void teacher_toolbar_Clicked(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void tutor_toolbar_Clicked(object sender, EventArgs e)
@@ -77,11 +71,6 @@ namespace TutoringAppProject
             await DisplayAlert("Delete", "Semester Deleted with key: " + key, "OK");
 
             await Navigation.PopAsync();
-        }
-
-        private async void Button_OnClicked_Class_Page(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new CourseList());
         }
     }
 }

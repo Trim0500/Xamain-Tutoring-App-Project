@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TutoringAppProject.Models;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace TutoringAppProject.Pages
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CourseList : ContentPage
+    {
+        public CourseList()
+        {
+            InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            List<Course> semesters = await App._courseDB.ReadAll();
+            course_collection_view.ItemsSource = semesters;
+        }
+
+        private async void key_tap_Tapped_update(object sender, EventArgs e)
+        {
+            string key = ((TappedEventArgs)e).Parameter.ToString();
+
+            await DisplayAlert("Show ID", key, "OK");
+
+            Course course = await App._courseDB.ReadById(key);
+            await Navigation.PushAsync(new CourseRegistration(course));
+        }
+
+        private async void key_tap_Tapped_delete(object sender, EventArgs e)
+        {
+            string key = ((TappedEventArgs)e).Parameter.ToString();
+
+            await App._courseDB.Delete(key);
+
+            await DisplayAlert("Delete", "Semester Deleted with key: " + key, "OK");
+
+            OnAppearing();
+        }
+
+        private async void Button_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CourseRegistration());
+        }
+    }
+}

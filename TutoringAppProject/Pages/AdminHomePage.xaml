@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringAppProject.Pages.AdminHomePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="teacher_toolbar"
+                     Text="Teachers"
+                     Clicked="teacher_toolbar_Clicked">
+        </ToolbarItem>
+
+        <ToolbarItem x:Name="tutor_toolbar"
+                     Text="Tutors"
+                     Clicked="tutor_toolbar_Clicked">
+        </ToolbarItem>
+
+        <ToolbarItem x:Name="student_toolbar"
+                     Text="Students"
+                     Clicked="student_toolbar_Clicked">
+        </ToolbarItem>
+
+        <ToolbarItem x:Name="user_toolbar"
+                     Text="Users"
+                     Clicked="user_toolbar_Clicked">
+        </ToolbarItem>
+
+        <ToolbarItem x:Name="logout_toolbar"
+                     Text="Logout"
+                     Clicked="logout_toolbar_Clicked">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <Label Text="Welcome to Admin Page!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+        <!-- Provide the semester list here -->
+        <Button x:Name="Semester_List" Text="Semester List" FontSize="Large" Clicked="Button_OnClicked_Semester_List"/>
+        <Button x:Name="Course_List" Text="Course List" FontSize="Large" Clicked="Button_OnClicked_Class_List"/>
+    </StackLayout>
+</ContentPage>
