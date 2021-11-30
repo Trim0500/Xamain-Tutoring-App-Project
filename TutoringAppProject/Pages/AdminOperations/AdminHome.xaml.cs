@@ -1,4 +1,5 @@
 ﻿using System;
+using TutoringAppProject.Pages.Authentication;
 using TutoringAppProject.Pages.CourseCRUD;
 using TutoringAppProject.Pages.SemesterCRUD;
 using TutoringAppProject.Pages.StudentCRUD;
@@ -31,7 +32,14 @@ namespace TutoringAppProject.Pages
 
         private async void logout_toolbar_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            // display login out confirmation
+            var answer = await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
+            if (answer)
+            {
+                // logout
+                await Navigation.PopAsync();
+            }
+           
         }
         
         private async void Button_OnClicked_Class_List(object sender, EventArgs e)

@@ -28,7 +28,7 @@
 
     <StackLayout>
         <Label Text="Welcome to the Admin Page!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-        <Button x:Name="SemesterList" Text="Semester List" BackgroundColor="AliceBlue"  FontSize="Large" Clicked="Button_OnClicked_Semester_List"/>
-        <Button x:Name="CourseList" Text="Course List" BackgroundColor="AliceBlue" FontSize="Large" Clicked="Button_OnClicked_Class_List"/>
+        <Button x:Name="SemesterList" Margin="10,0,10,5" Text="Semester List" BackgroundColor="LightBlue"  FontSize="Medium" Clicked="Button_OnClicked_Semester_List"/>
+        <Button x:Name="CourseList" Margin="10,0,10,5" Text="Course List" BackgroundColor="LightBlue" FontSize="Medium" Clicked="Button_OnClicked_Class_List"/>
     </StackLayout>
 </ContentPage>

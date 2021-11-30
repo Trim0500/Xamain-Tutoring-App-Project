@@ -57,6 +57,7 @@ namespace TutoringAppProject.Pages.Authentication
                 {
                     if (t.isVerified)
                     {
+                        
                         await DisplayAlert("Success", "Login Successful", "OK");
                         App._currentUser = t;
                         await Navigation.PushAsync(new TeacherOperations.TeacherHome());
@@ -97,7 +98,7 @@ namespace TutoringAppProject.Pages.Authentication
 
                 
             }
-            if (App._currentUser != null) return;
+            if (App._currentUser == null) return;
             
             await DisplayActionSheet("Error", "Cancel", null, "Invalid Username or Password.");
 

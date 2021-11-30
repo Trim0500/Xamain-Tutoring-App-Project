@@ -30,7 +30,11 @@
                                 <Label Grid.Column="0" Text="{Binding firstName}" BackgroundColor="White" TextColor="Black" FontSize="Small"/>
                                 <Label Grid.Column="1" Text="{Binding lastName}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
                                 <Label Grid.Column="2" Text="{Binding userName}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
-                                <Button x:Name="Verify" Grid.Column="3" Text="Verify" BackgroundColor="White" TextColor="Black" FontSize="Small" Clicked="Button_OnClicked_Verify" CommandParameter="{Binding key}"/>
+                                <Image Source="verify.jpg" Grid.Column="3" HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="key_tap_verify" Tapped="Key_tap_verify_OnTapped" CommandParameter="{Binding key}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
                                 <Image Source="edit.png" Grid.Column="4"  HeightRequest="20" WidthRequest="20">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer x:Name="key_tap_update" Tapped="key_tap_Tapped_update" CommandParameter="{Binding key}"/>

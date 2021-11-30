@@ -36,7 +36,7 @@ namespace TutoringAppProject.Pages
 
         private async void key_tap_Tapped_delete(object sender, EventArgs e)
         {
-            string key = ((TappedEventArgs)e).Parameter.ToString();
+            var key = ((TappedEventArgs)e).Parameter.ToString();
 
             await App._teacherDB.Delete(key);
             
@@ -49,12 +49,11 @@ namespace TutoringAppProject.Pages
         {
             await Navigation.PushAsync(new TeacherRegistration());
         }
-        
-        private async void Button_OnClicked_Verify(object sender, EventArgs e)
+        private async void Key_tap_verify_OnTapped(object sender, EventArgs e)
         {
-            var key = ((Button)sender).CommandParameter.ToString();
+            var key = ((TappedEventArgs)e).Parameter.ToString();
             
-            var teacher = App._teacherDB.ReadById(key).Result;
+            var teacher = await App._teacherDB.ReadById(key);
             
             // verify teacher
 

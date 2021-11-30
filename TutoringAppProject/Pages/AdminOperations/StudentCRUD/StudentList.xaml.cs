@@ -44,11 +44,11 @@ namespace TutoringAppProject.Pages.StudentCRUD
             await Navigation.PushAsync(new StudentRegistration());
         }
 
-        private async void Button_OnClicked_Verify(object sender, EventArgs e)
+        private async void Key_tap_verify_OnTapped(object sender, EventArgs e)
         {
-            var key = ((Button)sender).CommandParameter.ToString();
+            var key = ((TappedEventArgs)e).Parameter.ToString();
             
-            var student = App._studentDB.ReadById(key).Result;
+            var student = await App._studentDB.ReadById(key);
             
             // verify student
 

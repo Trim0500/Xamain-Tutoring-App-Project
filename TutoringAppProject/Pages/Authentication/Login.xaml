@@ -6,28 +6,32 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="0" VerticalOptions="Center">
-                <Image Source="tutoring.jfif" VerticalOptions="Start"/>
                 <Label Text="Welcome to the Future of Tutoring!"
-                            FontSize="Large"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Center" />
+                       FontSize="Large"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Image Source="tutoring.jfif" VerticalOptions="Start"/>
                 <Entry x:Name="UserEdit"
-                            Placeholder="Username"
-                            FontSize="Large"/>
+                       Margin="10,0,10,5"
+                       Placeholder="Username"
+                       FontSize="Large"/>
                 <Entry x:Name="PassEdit"
+                       Margin="10,0,10,5"
                             Placeholder="Password"
                             FontSize="Large"
                             IsPassword="True"/>
                 <Button x:Name="LoginBtn"
-                            Text="Login"
-                            Font="large"
-                            BackgroundColor="LightBlue"
-                            Clicked="login_btn_Clicked"/>
+                        Margin="10,0,10,5"
+                        Text="Login"
+                        Font="large"
+                        BackgroundColor="LightBlue"
+                        Clicked="login_btn_Clicked"/>
                 <Button x:Name="RegisterBtn"
-                            Text="Register New User"
-                            Font="large"
-                            BackgroundColor="LightBlue"
-                            Clicked="register_btn_Clicked"/>
+                        Margin="10,0,10,5"
+                        Text="Register"
+                        Font="large"
+                        BackgroundColor="LightBlue"
+                        Clicked="register_btn_Clicked"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -35,7 +39,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <RadioButton FontSize="Small" x:Name="StudentRadChk" Content="Student" GroupName="role_rad_btns" Grid.Column="0"/>
+                    <RadioButton FontSize="Small" IsChecked="True" x:Name="StudentRadChk" Content="Student" GroupName="role_rad_btns" Grid.Column="0"/>
                     <RadioButton FontSize="Small"  x:Name="TeacherRadChk" Content="Teacher" GroupName="role_rad_btns" Grid.Column="1"/>
                     <RadioButton FontSize="Small" x:Name="TutorRadChk" Content="Tutor" GroupName="role_rad_btns" Grid.Column="2"/>
                     <RadioButton FontSize="Small" x:Name="AdminRadChk" Content="Admin" GroupName="role_rad_btns" Grid.Column="3"/>

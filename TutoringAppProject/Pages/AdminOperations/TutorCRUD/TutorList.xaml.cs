@@ -46,11 +46,11 @@ namespace TutoringAppProject.Pages.TutorCRUD
             await Navigation.PushAsync(new TutorRegistration());
         }
         
-        private async void Button_OnClicked_Verify(object sender, EventArgs e)
+        private async void Key_tap_verify_OnTapped(object sender, EventArgs e)
         {
-            var key = ((Button)sender).CommandParameter.ToString();
+            var key = ((TappedEventArgs)e).Parameter.ToString();
             
-            var tutor = App._tutorDB.ReadById(key).Result;
+            var tutor = await App._tutorDB.ReadById(key);
             
             // verify tutor
 

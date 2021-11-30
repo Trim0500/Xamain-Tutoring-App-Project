@@ -11808,6 +11808,9 @@ namespace TutoringAppProject.Droid
 			// aapt resource value: 0x7F070096
 			public const int tutoring_small = 2131165334;
 			
+			// aapt resource value: 0x7F070097
+			public const int verify = 2131165335;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
