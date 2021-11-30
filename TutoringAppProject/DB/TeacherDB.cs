@@ -18,14 +18,7 @@ namespace TutoringAppProject.DB
         {
             var data = await _client.Child(nameof(Teacher)).PostAsync(JsonConvert.SerializeObject(teacher));
 
-            if (!String.IsNullOrEmpty(data.Key))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return !string.IsNullOrEmpty(data.Key);
         }
 
         public async Task<List<Teacher>> ReadAll()
@@ -35,15 +28,27 @@ namespace TutoringAppProject.DB
                 key = item.Key,
                 firstName = item.Object.firstName,
                 lastName = item.Object.lastName,
-                studentId = item.Object.studentId,
-                classGiven = item.Object.classGiven,
-                semester = item.Object.semester
+                userName = item.Object.userName,
+                password = item.Object.password,
+                role = item.Object.role,
+                isVerified = item.Object.isVerified
             }).ToList();
         }
 
         public async Task<Teacher> ReadById(string key)
         {
-            return await _client.Child(nameof(Teacher) + "/" + key).OnceSingleAsync<Teacher>();
+            return (await _client.Child(nameof(Teacher)).OnceAsync<Teacher>()).Select(item => new Teacher()
+            {
+                key = item.Key,
+                firstName = item.Object.firstName,
+                lastName = item.Object.lastName,
+                userName = item.Object.userName,
+                password = item.Object.password,
+                role = item.Object.role,
+                isVerified = item.Object.isVerified
+                
+
+            }).FirstOrDefault(i => i.key == key);
         }
 
         public async Task<bool> Update(Teacher teacher)

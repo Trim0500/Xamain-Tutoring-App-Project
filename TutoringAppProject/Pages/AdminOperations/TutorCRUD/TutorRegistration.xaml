@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringAppProject.Pages.TutorCRUD.TutorRegistration">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Tutor Add Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Entry x:Name="TutorFirstName" Placeholder="FirstName" FontSize="Large"></Entry>
+            <Entry x:Name="TutorLastName" Placeholder="LastName" FontSize="Large"></Entry>
+            <Entry x:Name="TutorUsername" Placeholder="Username" FontSize="Large"></Entry>
+            <Entry x:Name="TutorPassword" Placeholder="Password" FontSize="Large"></Entry>
+            <Button x:Name="TutorAddButton" Text="Add Tutor" Clicked="AddTutor" VerticalOptions="End" />
+            <Button x:Name="TutorUpdateButton" Text="Update Tutor" Clicked="UpdateTutor" VerticalOptions="End"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -17,23 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Pages\AdminOperations\CourseRegistration.xaml.cs">
-      <DependentUpon>CourseRegistration.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Pages\AdminOperations\CourseList.xaml.cs">
-      <DependentUpon>CourseList.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Pages\AdminOperations\SemesterList.xaml.cs">
-      <DependentUpon>SemesterList.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Pages\AdminOperations\SemesterRegistration.xaml.cs">
-      <DependentUpon>SemesterRegistration.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Pages\AdminOperations\AdminHomePage.xaml.cs">
+    <Compile Update="Pages\AdminOperations\AdminHome.xaml.cs">
       <DependentUpon>AdminHomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -41,16 +25,44 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\Authentication\Registration.xaml.cs">
-      <DependentUpon>Registration.xaml</DependentUpon>
+    <Compile Update="Pages\AdminOperations\CourseCRUD\CourseRegistration.xaml.cs">
+      <DependentUpon>CourseRegistration.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\UserOperations\UserPage.xaml.cs">
-      <DependentUpon>UserPage.xaml</DependentUpon>
+    <Compile Update="Pages\AdminOperations\CourseCRUD\CourseList.xaml.cs">
+      <DependentUpon>CourseList.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\UserOperations\UserList.xaml.cs">
-      <DependentUpon>UserList.xaml</DependentUpon>
+    <Compile Update="Pages\AdminOperations\StudentCRUD\StudentRegistration.xaml.cs">
+      <DependentUpon>StudentRegistration.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\StudentCRUD\StudentList.xaml.cs">
+      <DependentUpon>StudentList.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\SemesterCRUD\SemesterRegistration.xaml.cs">
+      <DependentUpon>SemesterRegistration.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\SemesterCRUD\SemesterList.xaml.cs">
+      <DependentUpon>SemesterList.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\TeacherCRUD\TeacherList.xaml.cs">
+      <DependentUpon>TeacherList.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\TutorCRUD\TutorRegistration.xaml.cs">
+      <DependentUpon>TutorRegistration.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AdminOperations\TutorCRUD\TutorList.xaml.cs">
+      <DependentUpon>TutorList.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Authentication\UserRegistration.xaml.cs">
+      <DependentUpon>UserRegistration.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

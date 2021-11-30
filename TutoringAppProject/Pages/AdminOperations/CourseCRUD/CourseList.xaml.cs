@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using TutoringAppProject.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TutoringAppProject.Pages
+namespace TutoringAppProject.Pages.CourseCRUD
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseList
@@ -16,7 +15,7 @@ namespace TutoringAppProject.Pages
 
         protected override async void OnAppearing()
         {
-            List<Course> semesters = await App._courseDB.ReadAll();
+            var semesters = await App._courseDB.ReadAll();
             CourseCollectionView.ItemsSource = semesters;
         }
 
@@ -32,7 +31,7 @@ namespace TutoringAppProject.Pages
 
         private async void key_tap_Tapped_delete(object sender, EventArgs e)
         {
-            string key = ((TappedEventArgs)e).Parameter.ToString();
+            var key = ((TappedEventArgs)e).Parameter.ToString();
 
             await App._courseDB.Delete(key);
 

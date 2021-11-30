@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringAppProject.Pages.TutorCRUD.TutorList">
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView  x:Name="TutorCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="{Binding firstName}" BackgroundColor="White" TextColor="Black" FontSize="Small"/>
+                                <Label Grid.Column="1" Text="{Binding lastName}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
+                                <Label Grid.Column="2" Text="{Binding userName}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
+                                <Button x:Name="Verify" Grid.Column="3" Text="Verify" BackgroundColor="White" TextColor="Black" FontSize="Small" Clicked="Button_OnClicked_Verify" CommandParameter="{Binding key}"/>
+                                <Image Source="edit.png" Grid.Column="4"  HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="key_tap_update" Tapped="key_tap_Tapped_update" CommandParameter="{Binding key}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Source="delete.png" Grid.Column="5"  HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="key_tap_delete" Tapped="key_tap_Tapped_delete" CommandParameter="{Binding key}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button x:Name="AddCourse" Text="Add" FontSize="Large" Clicked="Button_OnClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

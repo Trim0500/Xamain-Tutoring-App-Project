@@ -1,4 +1,6 @@
-﻿namespace TutoringAppProject.Models
+﻿using TutoringAppProject.Enums;
+
+namespace TutoringAppProject.Models
 {
     public class User
     {
@@ -7,6 +9,6 @@
         public string lastName { get; set; }
         public string userName { get; set; }
         public string password { get; set; }
-        public string role { get; set; }
+        public RoleType role { get; set; }
     }
 }

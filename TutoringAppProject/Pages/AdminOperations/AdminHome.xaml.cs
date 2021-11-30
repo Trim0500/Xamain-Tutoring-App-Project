@@ -1,41 +1,39 @@
 ﻿using System;
-using TutoringAppProject.Pages.UserOperations;
+using TutoringAppProject.Pages.CourseCRUD;
+using TutoringAppProject.Pages.SemesterCRUD;
+using TutoringAppProject.Pages.StudentCRUD;
+using TutoringAppProject.Pages.TutorCRUD;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AdminHomePage
+    public partial class AdminHome
     {
-        public AdminHomePage()
+        public AdminHome()
         {
             InitializeComponent();
         }
-        private void teacher_toolbar_Clicked(object sender, EventArgs e)
+        private async void teacher_toolbar_Clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            await Navigation.PushAsync(new TeacherList());
         }
 
-        private void tutor_toolbar_Clicked(object sender, EventArgs e)
+        private async void tutor_toolbar_Clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            await Navigation.PushAsync(new TutorList());
         }
 
-        private void student_toolbar_Clicked(object sender, EventArgs e)
+        private async void student_toolbar_Clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            await Navigation.PushAsync(new StudentList());
         }
 
         private async void logout_toolbar_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
-
-        private async void user_toolbar_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new UserList());
-        }
-
+        
         private async void Button_OnClicked_Class_List(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CourseList());

@@ -1,10 +1,21 @@
-﻿namespace TutoringAppProject.Models
+﻿using TutoringAppProject.Enums;
+
+namespace TutoringAppProject.Models
 {
-    public class Student
+    public class Student : SystemUser
     {
-        public string key { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string studentId { get; set; }
+        public Student() {
+            
+        }
+        
+        public Student(string firstName, string lastName, string userName, string password, bool isVerified) 
+        {
+            this.firstName = firstName;
+            this.lastName= lastName;
+            this.userName = userName;
+            this.password = password;
+            this.isVerified = isVerified;
+            role = RoleType.Student;
+        }
     }
 }

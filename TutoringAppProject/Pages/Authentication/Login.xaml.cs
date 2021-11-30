@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
+using TutoringAppProject.Enums;
 using TutoringAppProject.Models;
-using TutoringAppProject.Pages.UserOperations;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages.Authentication
@@ -17,7 +17,7 @@ namespace TutoringAppProject.Pages.Authentication
 
         private async void register_btn_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Registration());
+            await Navigation.PushAsync(new UserRegistration());
         }
 
         private async void login_btn_Clicked(object sender, EventArgs e)
@@ -32,60 +32,95 @@ namespace TutoringAppProject.Pages.Authentication
                 return;
             }
 
-            List<User> userList = await App._userDB.ReadAll();
-            foreach (User temp in userList)
+            if (StudentRadChk.IsChecked)
             {
-                if (temp.key != null)
+                var student = await App._studentDB.ReadAll();
+                foreach (var s in student.Where(s => s.userName == userName && s.password == password))
                 {
-                    if (temp.userName == userName && temp.password == password)
+                    if (s.isVerified)
                     {
-                        App._currentUser = temp;
+                        await DisplayAlert("Success", "Login Successful", "OK");
+                        App._currentUser = s;
+                        await Navigation.PushAsync(new StudentOperations.StudentHome());
+                        return;
                     }
-                }
-                else
-                {
-                    await DisplayAlert("Firebase Key Error", "The firebase record for this user was found to be null", "OK");
+
+                    await DisplayActionSheet("Error", "Cancel", null, "Your account is not verified yet.");
                     return;
                 }
             }
 
-            //Console.WriteLine(App.globalUser);
+            if (TeacherRadChk.IsChecked)
+            {
+                var teacher = await App._teacherDB.ReadAll();
+                foreach (var t in teacher.Where(t => t.userName == userName && t.password == password))
+                {
+                    if (t.isVerified)
+                    {
+                        await DisplayAlert("Success", "Login Successful", "OK");
+                        App._currentUser = t;
+                        await Navigation.PushAsync(new TeacherOperations.TeacherHome());
+                        return;
+                    }
+                    await DisplayActionSheet("Error", "Cancel", null, "Your account is not verified yet.");
+                    return;
+                }
+            }
 
-            if (App._currentUser != null)
+            if (TutorRadChk.IsChecked)
             {
-                if (App._currentUser.role == "admin")
+                var tutors = await App._tutorDB.ReadAll();
+                foreach (var tutor in tutors.Where(tutor => tutor.userName == userName && tutor.password == password))
                 {
-                    await DisplayAlert("Welcome Admin!", "Login successful for Trim!", "OK");
-                    await Navigation.PushAsync(new AdminHomePage());
-                }
-                else
-                {
-                    await DisplayAlert("Welcome User!", "Login Successful for user: " + App._currentUser.userName + "!", "OK");
-                    await Navigation.PushAsync(new UserPage());
+                    if (tutor.isVerified)
+                    {
+                        await DisplayAlert("Success", "Login Successful", "OK");
+                        App._currentUser = tutor;
+                        await Navigation.PushAsync(new TutorOperations.TutorHome());
+                        return;
+                    }
+                    await DisplayActionSheet("Error", "Cancel", null, "Your account is not verified yet.");
+                    return;
                 }
             }
-            else
+
+            if (AdminRadChk.IsChecked)
             {
-                await DisplayAlert("Login Failed", "Incorrect username or password", "OK");
+                var admins = await App._adminDb.ReadAll();
+                foreach (var admin in admins.Where(admin => admin.userName == userName && admin.password == password))
+                {
+                    await DisplayAlert("Success", "Login Successful", "OK");
+                    App._currentUser = admin;
+                    await Navigation.PushAsync(new AdminHome());
+                    return;
+                }
+
+                
             }
+            if (App._currentUser != null) return;
+            
+            await DisplayActionSheet("Error", "Cancel", null, "Invalid Username or Password.");
+
+            if (AdminRadChk.IsChecked || TeacherRadChk.IsChecked || StudentRadChk.IsChecked ||
+                TutorRadChk.IsChecked) return;
+            await DisplayActionSheet("Error", "Cancel", null, "Please select a user type.");
+
         }
 
         private async void CreateAdmin()
         {
-            var userList = await App._userDB.ReadAll();
-            if (userList.Count != 0) return;
-            var newUser = new User
+            var admins = await App._adminDb.ReadAll();
+            if (admins.Count != 0) return;
+            var newAdmin = new Admin()
             {
                 userName = "Trim",
                 password = "TrLa0519.",
                 firstName = "Tristan",
                 lastName = "Lafleur",
-                role = "admin"
+                role = RoleType.Admin
             };
-
-            var isSaved = await App._userDB.Create(newUser);
-
-            if (isSaved)
+            
+            if (await App._adminDb.Create(newAdmin))
             {
                 await DisplayAlert("Success", "Saved", "Cancel");
             }
@@ -93,17 +128,6 @@ namespace TutoringAppProject.Pages.Authentication
             {
                 await DisplayAlert("Failed", "Did not save", "Cancel");
             }
-
-            //await userDB.Create(new User
-            //{
-            //    userName = "Trim",
-            //    password = "TrLa0519.",
-            //    firstName = "Tristan",
-            //    lastName = "Lafleur",
-            //    role = "admin",
-            //    email = "tristanblacklafleur@hotmail.ca",
-            //    phoneNum = "(438) 526-5985"
-            //});
         }
     }
 }

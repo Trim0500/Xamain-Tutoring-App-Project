@@ -2,7 +2,7 @@
 using TutoringAppProject.Models;
 using Xamarin.Forms.Xaml;
 
-namespace TutoringAppProject.Pages
+namespace TutoringAppProject.Pages.CourseCRUD
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseRegistration
@@ -69,7 +69,7 @@ namespace TutoringAppProject.Pages
                 return;
             }
 
-            Course course = new Course()
+            var course = new Course()
             {
                 key = _course.key,
                 courseCode = CourseCode.Text,

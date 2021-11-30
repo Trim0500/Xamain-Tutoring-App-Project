@@ -26,13 +26,27 @@ namespace TutoringAppProject.DB
             {
                 key = item.Key,
                 firstName = item.Object.firstName,
-                lastName = item.Object.lastName
+                lastName = item.Object.lastName,
+                userName = item.Object.userName,
+                password = item.Object.password,
+                role = item.Object.role,
+                isVerified = item.Object.isVerified
             }).ToList();
         }
 
         public async Task<Student> ReadById(string key)
         {
-            return await _client.Child(nameof(Student) + "/" + key).OnceSingleAsync<Student>();
+            return (await _client.Child(nameof(Student)).OnceAsync<Student>()).Select(item => new Student()
+            {
+                key = item.Key,
+                firstName = item.Object.firstName,
+                lastName = item.Object.lastName,
+                userName = item.Object.userName,
+                password = item.Object.password,
+                role = item.Object.role,
+                isVerified = item.Object.isVerified
+
+            }).FirstOrDefault(i => i.key == key);
         }
 
         public async Task<bool> Update(Student student)

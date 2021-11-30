@@ -2,7 +2,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.AdminHomePage"
+             x:Class="TutoringAppProject.Pages.AdminHome"
              BackgroundImageSource="background2.jpg">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="TeacherToolbar"
@@ -19,12 +19,7 @@
                      Text="Students"
                      Clicked="student_toolbar_Clicked">
         </ToolbarItem>
-
-        <ToolbarItem x:Name="UserToolbar"
-                     Text="Users"
-                     Clicked="user_toolbar_Clicked">
-        </ToolbarItem>
-
+        
         <ToolbarItem x:Name="LogoutToolbar" 
                      Text="Logout"
                      Clicked="logout_toolbar_Clicked">
@@ -33,7 +28,6 @@
 
     <StackLayout>
         <Label Text="Welcome to the Admin Page!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-        <!-- Provide the semester list here -->
         <Button x:Name="SemesterList" Text="Semester List" BackgroundColor="AliceBlue"  FontSize="Large" Clicked="Button_OnClicked_Semester_List"/>
         <Button x:Name="CourseList" Text="Course List" BackgroundColor="AliceBlue" FontSize="Large" Clicked="Button_OnClicked_Class_List"/>
     </StackLayout>

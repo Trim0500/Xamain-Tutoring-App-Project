@@ -2,7 +2,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.CourseRegistration"
+             x:Class="TutoringAppProject.Pages.CourseCRUD.CourseRegistration"
              BackgroundImageSource="background2.jpg">
     <ContentPage.Content>
         <StackLayout>

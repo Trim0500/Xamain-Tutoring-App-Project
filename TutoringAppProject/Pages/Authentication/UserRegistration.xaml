@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringAppProject.Pages.Authentication.UserRegistration">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Semester Add Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Entry x:Name="FirstName" Placeholder="FirstName" FontSize="Large"></Entry>
+            <Entry x:Name="LastName" Placeholder="LastName" FontSize="Large"></Entry>
+            <Entry x:Name="Username" Placeholder="Username" FontSize="Large"></Entry>
+            <Entry x:Name="Password" Placeholder="Password" FontSize="Large"></Entry>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <RadioButton x:Name="StudentRadChk" Content="Student" GroupName="role_rad_btns" Grid.Column="0"/>
+                <RadioButton x:Name="TeacherRadChk" Content="Teacher" GroupName="role_rad_btns" Grid.Column="1"/>
+                <RadioButton x:Name="TutorRadChk" Content="Tutor" GroupName="role_rad_btns" Grid.Column="2"/>
+            </Grid>
+            <Button Text="Add User" Clicked="AddUser" VerticalOptions="End" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

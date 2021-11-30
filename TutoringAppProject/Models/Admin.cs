@@ -2,21 +2,19 @@
 
 namespace TutoringAppProject.Models
 {
-    public class Teacher : SystemUser
+    public class Admin : User
     {
-        public Teacher()
-        {
+        public Admin() {
             
         }
-
-        public Teacher(string firstName, string lastName, string userName, bool isVerified)
+        
+        public Admin(string firstName, string lastName, string userName, string password)
         {
             this.firstName = firstName;
             this.lastName= lastName;
             this.userName = userName;
             this.password = password;
-            this.isVerified = isVerified;
-            role = RoleType.Student;
+            role = RoleType.Admin;
         }
     }
 }

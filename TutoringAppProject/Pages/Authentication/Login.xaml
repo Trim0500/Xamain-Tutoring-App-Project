@@ -28,6 +28,18 @@
                             Font="large"
                             BackgroundColor="LightBlue"
                             Clicked="register_btn_Clicked"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton FontSize="Small" x:Name="StudentRadChk" Content="Student" GroupName="role_rad_btns" Grid.Column="0"/>
+                    <RadioButton FontSize="Small"  x:Name="TeacherRadChk" Content="Teacher" GroupName="role_rad_btns" Grid.Column="1"/>
+                    <RadioButton FontSize="Small" x:Name="TutorRadChk" Content="Tutor" GroupName="role_rad_btns" Grid.Column="2"/>
+                    <RadioButton FontSize="Small" x:Name="AdminRadChk" Content="Admin" GroupName="role_rad_btns" Grid.Column="3"/>
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
