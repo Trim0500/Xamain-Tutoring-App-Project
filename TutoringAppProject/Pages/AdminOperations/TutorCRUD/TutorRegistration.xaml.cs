@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TutoringAppProject.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,11 +10,14 @@ namespace TutoringAppProject.Pages.TutorCRUD
     public partial class TutorRegistration : ContentPage
     {
         private Tutor _tutor { get; set; }
+        private List<Semester> semesters = new List<Semester>();
+        private List<Course> courses = new List<Course>();
         public TutorRegistration()
         {
             InitializeComponent();
             TutorUpdateButton.IsVisible = false;
             TutorUpdateButton.IsEnabled = false;
+            GetCourses();
         }
         
         public TutorRegistration(Tutor tutor)
@@ -26,8 +30,15 @@ namespace TutoringAppProject.Pages.TutorCRUD
             TutorLastName.Text =  tutor.lastName;
             TutorUsername.Text = tutor.userName;
             TutorPassword.Text = tutor.password;
-            
+            GetCourses();
         }
+
+        public async void GetCourses()
+        {
+            semesters = await App._semesterDB.ReadAll();
+            courses = await App._courseDB.ReadAll();
+        }
+
         private async void AddTutor(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(TutorFirstName.Text))
