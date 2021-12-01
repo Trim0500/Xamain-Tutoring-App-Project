@@ -43,6 +43,17 @@ namespace TutoringAppProject.Pages.TutorCRUD
 
             SemesterChoice.ItemsSource = semesterCodes;
             SemesterChoice.SelectedIndex = 0;
+
+            List<Course> courses = await App._courseDB.ReadAll();
+            foreach(Course temp in courses)
+            {
+                if(temp.semesterCode.Equals(semesterCodes[0]))
+                {
+                    semesterCourses.Add(temp);
+                }
+            }
+
+            CoursesBoxes.ItemsSource = semesterCourses;
         }
 
         private void SemesterChoice_SelectedIndexChanged(object sender, EventArgs e)
