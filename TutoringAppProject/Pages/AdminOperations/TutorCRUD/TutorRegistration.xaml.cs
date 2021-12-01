@@ -10,8 +10,8 @@ namespace TutoringAppProject.Pages.TutorCRUD
     public partial class TutorRegistration : ContentPage
     {
         private Tutor _tutor { get; set; }
-        private List<string> semesterCodes = new List<string>();
-        private List<Course> semesterCourses = new List<Course>();
+        private List<Semester> semesters = new List<Semester>();
+        private List<Course> courses = new List<Course>();
         public TutorRegistration()
         {
             InitializeComponent();
@@ -35,8 +35,9 @@ namespace TutoringAppProject.Pages.TutorCRUD
 
         public async void GetCourses()
         {
-            List<Semester> semesters = await App._semesterDB.ReadAll();
-            foreach(Semester temp in semesters)
+            semesters = await App._semesterDB.ReadAll();
+            List<string> semesterCodes = new List<string>();
+            foreach (Semester temp in semesters)
             {
                 semesterCodes.Add(temp.semesterCode);
             }
@@ -44,8 +45,9 @@ namespace TutoringAppProject.Pages.TutorCRUD
             SemesterChoice.ItemsSource = semesterCodes;
             SemesterChoice.SelectedIndex = 0;
 
-            List<Course> courses = await App._courseDB.ReadAll();
-            foreach(Course temp in courses)
+            courses = await App._courseDB.ReadAll();
+            List<Course> semesterCourses = new List<Course>();
+            foreach (Course temp in courses)
             {
                 if(temp.semesterCode.Equals(semesterCodes[0]))
                 {
@@ -58,7 +60,18 @@ namespace TutoringAppProject.Pages.TutorCRUD
 
         private void SemesterChoice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Update the possible choices of courses based on selected semester
+            string selectedSemester = SemesterChoice.SelectedItem.ToString();
+
+            List<Course> semesterCourses = new List<Course>();
+            foreach (Course temp in courses)
+            {
+                if (temp.semesterCode.Equals(selectedSemester))
+                {
+                    semesterCourses.Add(temp);
+                }
+            }
+
+            CoursesBoxes.ItemsSource = semesterCourses;
         }
 
         private async void AddTutor(object sender, EventArgs e)
