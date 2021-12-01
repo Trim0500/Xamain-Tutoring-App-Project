@@ -10,19 +10,20 @@ namespace TutoringAppProject.Pages.TutorCRUD
     public partial class TutorRegistration : ContentPage
     {
         private Tutor _tutor { get; set; }
-        private List<Semester> semesters = new List<Semester>();
-        private List<Course> courses = new List<Course>();
+        private List<string> semesterCodes = new List<string>();
+        private List<Course> semesterCourses = new List<Course>();
         public TutorRegistration()
         {
             InitializeComponent();
+            GetCourses();
             TutorUpdateButton.IsVisible = false;
             TutorUpdateButton.IsEnabled = false;
-            GetCourses();
         }
         
         public TutorRegistration(Tutor tutor)
         {
             InitializeComponent();
+            GetCourses();
             _tutor = tutor;
             TutorAddButton.IsVisible = false;
             TutorAddButton.IsEnabled = false;
@@ -30,13 +31,23 @@ namespace TutoringAppProject.Pages.TutorCRUD
             TutorLastName.Text =  tutor.lastName;
             TutorUsername.Text = tutor.userName;
             TutorPassword.Text = tutor.password;
-            GetCourses();
         }
 
         public async void GetCourses()
         {
-            semesters = await App._semesterDB.ReadAll();
-            courses = await App._courseDB.ReadAll();
+            List<Semester> semesters = await App._semesterDB.ReadAll();
+            foreach(Semester temp in semesters)
+            {
+                semesterCodes.Add(temp.semesterCode);
+            }
+
+            SemesterChoice.ItemsSource = semesterCodes;
+            SemesterChoice.SelectedIndex = 0;
+        }
+
+        private void SemesterChoice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Update the possible choices of courses based on selected semester
         }
 
         private async void AddTutor(object sender, EventArgs e)

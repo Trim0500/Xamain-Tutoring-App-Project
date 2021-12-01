@@ -10,6 +10,25 @@
             <Entry x:Name="TutorLastName" Placeholder="LastName" FontSize="Large"></Entry>
             <Entry x:Name="TutorUsername" Placeholder="Username" FontSize="Large"></Entry>
             <Entry x:Name="TutorPassword" Placeholder="Password" FontSize="Large"></Entry>
+            <Picker x:Name="SemesterChoice" ItemsSource="{Binding semesterCodes}" SelectedIndexChanged="SemesterChoice_SelectedIndexChanged" />
+            <CollectionView x:Name="CoursesBoxes" ItemsSource="{Binding semesterCourses}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Row="0" Grid.Column="0" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding courseName}" FontSize="Small" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
             <Button x:Name="TutorAddButton" Text="Add Tutor" Clicked="AddTutor" VerticalOptions="End" />
             <Button x:Name="TutorUpdateButton" Text="Update Tutor" Clicked="UpdateTutor" VerticalOptions="End"></Button>
         </StackLayout>
