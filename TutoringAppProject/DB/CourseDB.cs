@@ -33,6 +33,7 @@ namespace TutoringAppProject.DB
             return (await _client.Child(nameof(Course)).OnceAsync<Course>()).Select(item => new Course()
             {
                 key = item.Key,
+                semesterCode = item.Object.semesterCode,
                 courseCode = item.Object.courseCode,
                 courseName = item.Object.courseName
             }).ToList();
@@ -43,6 +44,7 @@ namespace TutoringAppProject.DB
             return (await _client.Child(nameof(Course)).OnceAsync<Course>()).Select(item => new Course()
             {
                 key = item.Key,
+                semesterCode = item.Object.semesterCode,
                 courseCode = item.Object.courseCode,
                 courseName = item.Object.courseName
             }).FirstOrDefault(i => i.key == key);

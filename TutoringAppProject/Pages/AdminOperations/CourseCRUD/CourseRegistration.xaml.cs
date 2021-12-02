@@ -19,12 +19,18 @@ namespace TutoringAppProject.Pages.CourseCRUD
             InitializeComponent();
             _course = course;
             CourseAddButton.IsEnabled = false;
+            SemesterCode.Text = course.semesterCode;
             CourseCode.Text = course.courseCode;
             CourseName.Text = course.courseName;
         }
 
         private async void AddCourse(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(SemesterCode.Text))
+            {
+                await DisplayAlert("Error", "Please enter a semester code", "OK");
+                return;
+            }
             if (string.IsNullOrEmpty(CourseCode.Text))
             {
                 await DisplayAlert("Error", "Please enter a course code", "OK");
@@ -39,6 +45,7 @@ namespace TutoringAppProject.Pages.CourseCRUD
 
             Course course = new Course()
             {
+                semesterCode = SemesterCode.Text,
                 courseCode = CourseCode.Text,
                 courseName = CourseName.Text,
 
@@ -57,6 +64,11 @@ namespace TutoringAppProject.Pages.CourseCRUD
 
         private async void UpdateCourse(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(SemesterCode.Text))
+            {
+                await DisplayAlert("Error", "Please enter a semester code", "OK");
+                return;
+            }
             if (string.IsNullOrEmpty(CourseCode.Text))
             {
                 await DisplayAlert("Error", "Please enter a course code", "OK");
@@ -72,6 +84,7 @@ namespace TutoringAppProject.Pages.CourseCRUD
             var course = new Course()
             {
                 key = _course.key,
+                semesterCode = SemesterCode.Text,
                 courseCode = CourseCode.Text,
                 courseName = CourseName.Text,
             };

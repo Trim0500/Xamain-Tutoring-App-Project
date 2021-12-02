@@ -7,6 +7,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Course Registration Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Entry x:Name="SemesterCode" Placeholder="Semester Code" FontSize="Large"></Entry>
             <Entry x:Name="CourseCode" Placeholder="Course Code" FontSize="Large"></Entry>
             <Entry x:Name="CourseName" Placeholder="Course Name" FontSize="Large"></Entry>
             <Button x:Name="CourseAddButton" Text="Add Course" Clicked="AddCourse" VerticalOptions="End" />
