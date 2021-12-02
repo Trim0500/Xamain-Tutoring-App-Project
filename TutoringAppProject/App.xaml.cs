@@ -24,6 +24,7 @@ namespace TutoringAppProject
             
 
         public static User _currentUser { get; set; }
+        public static Teacher _currentTeacher { get; set; }
 
         public App()
         {

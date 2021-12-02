@@ -60,6 +60,7 @@ namespace TutoringAppProject.Pages.Authentication
                         
                         await DisplayAlert("Success", "Login Successful", "OK");
                         App._currentUser = t;
+                        App._currentTeacher = t;
                         await Navigation.PushAsync(new TeacherOperations.TeacherHome());
                         return;
                     }
