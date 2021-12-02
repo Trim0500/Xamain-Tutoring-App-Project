@@ -4,7 +4,7 @@ namespace TutoringAppProject.Models
 {
     public class Tutor : SystemUser
     {
-        private string[] courses;
+        public string[] courses;
 
         public Tutor()
         {

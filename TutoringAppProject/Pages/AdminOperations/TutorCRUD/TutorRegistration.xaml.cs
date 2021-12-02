@@ -12,6 +12,7 @@ namespace TutoringAppProject.Pages.TutorCRUD
         private Tutor _tutor { get; set; }
         private List<Semester> semesters = new List<Semester>();
         private List<Course> courses = new List<Course>();
+        private List<string> tutorCourses = new List<string>();
         public TutorRegistration()
         {
             InitializeComponent();
@@ -23,14 +24,15 @@ namespace TutoringAppProject.Pages.TutorCRUD
         public TutorRegistration(Tutor tutor)
         {
             InitializeComponent();
-            GetCourses();
             _tutor = tutor;
+            GetCourses();
             TutorAddButton.IsVisible = false;
             TutorAddButton.IsEnabled = false;
             TutorFirstName.Text = tutor.firstName;
             TutorLastName.Text =  tutor.lastName;
             TutorUsername.Text = tutor.userName;
             TutorPassword.Text = tutor.password;
+
         }
 
         public async void GetCourses()
@@ -152,7 +154,8 @@ namespace TutoringAppProject.Pages.TutorCRUD
                 firstName = TutorFirstName.Text,
                 lastName = TutorLastName.Text,
                 userName = TutorUsername.Text,
-                password = TutorPassword.Text
+                password = TutorPassword.Text,
+                courses = tutorCourses.ToArray()
             };
 
             if (await App._tutorDB.Update(tutor))
@@ -163,6 +166,26 @@ namespace TutoringAppProject.Pages.TutorCRUD
             else
             {
                 await DisplayAlert("Error", "Teacher not Tutor", "OK");
+            }
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var code = ((TappedEventArgs)e).Parameter.ToString();
+
+            bool isInList = tutorCourses.Contains(code);
+
+            if(!isInList)
+            {
+                tutorCourses.Add(code);
+                ((Label)sender).TextColor = Color.Green;
+                await DisplayAlert("Adding Tutor", "Adding the tutor to the course", "OK");
+            }
+            else
+            {
+                tutorCourses.Remove(code);
+                ((Label)sender).TextColor = Color.Black;
+                await DisplayAlert("Removing Tutor", "Removing the tutor from the course", "OK");
             }
         }
     }
