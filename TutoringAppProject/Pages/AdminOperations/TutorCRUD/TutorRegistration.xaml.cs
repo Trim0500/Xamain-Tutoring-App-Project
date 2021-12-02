@@ -108,6 +108,7 @@ namespace TutoringAppProject.Pages.TutorCRUD
                 lastName = TutorLastName.Text,
                 userName = TutorUsername.Text,
                 password = TutorPassword.Text,
+                courses = tutorCourses.ToArray(),
                 isVerified = true
             };
 
