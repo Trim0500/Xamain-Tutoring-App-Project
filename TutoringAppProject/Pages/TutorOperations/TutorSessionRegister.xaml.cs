@@ -71,17 +71,18 @@ namespace TutoringAppProject.Pages.TutorOperations
 
             var type = RadioButtonGroupTutoring.IsChecked ? TutoringType.Group : TutoringType.Individual;
             
-            var session = new Session()
-            {
-                Date = SessionDate.Date,
-                StartTime = SessionStartTime.Time,
-                EndTime = SessionEndTime.Time,
-                SessionType = type,
-                TutorKey = App._currentUser.key
-            };
-
             if (_isUpdate)
             {
+                var session = new Session()
+                {
+                    Key = _session.Key,
+                    Date = SessionDate.Date,
+                    StartTime = SessionStartTime.Time,
+                    EndTime = SessionEndTime.Time,
+                    SessionType = type,
+                    TutorKey = App._currentUser.key
+                };
+
                 if (await App._sessionDB.Update(session))
                 {
                     await DisplayAlert("Success", "Session updated", "OK");
@@ -94,6 +95,15 @@ namespace TutoringAppProject.Pages.TutorOperations
             }
             else
             {
+                var session = new Session()
+                {
+                    Date = SessionDate.Date,
+                    StartTime = SessionStartTime.Time,
+                    EndTime = SessionEndTime.Time,
+                    SessionType = type,
+                    TutorKey = App._currentUser.key
+                };
+
                 if (await App._sessionDB.Create(session))
                 {
                     await DisplayAlert("Success", "Semester added", "OK");
