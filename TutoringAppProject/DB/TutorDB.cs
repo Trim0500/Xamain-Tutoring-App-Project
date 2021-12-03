@@ -1,8 +1,10 @@
-﻿using Firebase.Database;
+﻿using System.Collections;
+using Firebase.Database;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Firebase.Database.Query;
 using TutoringAppProject.Models;
 
 namespace TutoringAppProject.DB
@@ -18,6 +20,14 @@ namespace TutoringAppProject.DB
             var data = await _client.Child(nameof(Tutor)).PostAsync(JsonConvert.SerializeObject(tutor));
 
             return !string.IsNullOrEmpty(data.Key);
+        }
+        
+        // get tutor courses by tutor id
+        public async Task<List<string>> GetTutorCourses(string tutorId)
+        {
+            var data = await _client.Child(nameof(Tutor)).Child(tutorId).Child(nameof(Tutor.courses)).OnceAsync<string>();
+
+            return data.Select(x => x.Object).ToList();
         }
 
         public async Task<List<Tutor>> ReadAll()

@@ -38,40 +38,22 @@ namespace TutoringAppProject.Pages.TeacherCRUD
         public async void GetCourses()
         {
             semesters = await App._semesterDB.ReadAll();
-            List<string> semesterCodes = new List<string>();
-            foreach (Semester temp in semesters)
-            {
-                semesterCodes.Add(temp.semesterCode);
-            }
+            var semesterCodes = semesters.Select(temp => temp.SemesterCode).ToList();
 
             SemesterChoice.ItemsSource = semesterCodes;
             SemesterChoice.SelectedIndex = 0;
 
             courses = await App._courseDB.ReadAll();
-            List<Course> semesterCourses = new List<Course>();
-            foreach (Course temp in courses)
-            {
-                if (temp.semesterCode.Equals(semesterCodes[0]))
-                {
-                    semesterCourses.Add(temp);
-                }
-            }
+            var semesterCourses = courses.Where(temp => temp.SemesterCode.Equals(semesterCodes[0])).ToList();
 
             CoursesBoxes.ItemsSource = semesterCourses;
         }
 
         private void SemesterChoice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedSemester = SemesterChoice.SelectedItem.ToString();
+            var selectedSemester = SemesterChoice.SelectedItem.ToString();
 
-            List<Course> semesterCourses = new List<Course>();
-            foreach (Course temp in courses)
-            {
-                if (temp.semesterCode.Equals(selectedSemester))
-                {
-                    semesterCourses.Add(temp);
-                }
-            }
+            var semesterCourses = courses.Where(temp => temp.SemesterCode.Equals(selectedSemester)).ToList();
 
             CoursesBoxes.ItemsSource = semesterCourses;
         }
@@ -174,7 +156,7 @@ namespace TutoringAppProject.Pages.TeacherCRUD
         {
             var code = ((TappedEventArgs)e).Parameter.ToString();
 
-            bool isInList = teacherCourses.Contains(code);
+            var isInList = teacherCourses.Contains(code);
 
             if (!isInList)
             {

@@ -108,6 +108,7 @@ namespace TutoringAppProject.Pages.Authentication
 
         }
 
+        //create new admin if not found
         private async void CreateAdmin()
         {
             var admins = await App._adminDb.ReadAll();

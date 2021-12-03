@@ -4,14 +4,12 @@ namespace TutoringAppProject.Models
 {
     public class Tutor : SystemUser
     {
-        public string[] courses;
-
         public Tutor()
         {
             
         }
 
-        public Tutor(string firstName, string lastName, string userName, string[] courses, bool isVerified)
+        public Tutor(string firstName, string lastName, string userName, string password, string[] courses, bool isVerified)
         {
             this.firstName = firstName;
             this.lastName= lastName;

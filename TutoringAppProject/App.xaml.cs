@@ -21,9 +21,11 @@ namespace TutoringAppProject
         public static TutorDb _tutorDB = new TutorDb();
         
         public static TeacherDb _teacherDB = new TeacherDb();
-            
-
+        
+        public static SessionDB _sessionDB = new SessionDB();
         public static User _currentUser { get; set; }
+        
+        // 
 
         public App()
         {

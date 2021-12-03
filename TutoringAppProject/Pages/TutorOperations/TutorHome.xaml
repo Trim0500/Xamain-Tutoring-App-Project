@@ -5,9 +5,13 @@
              x:Class="TutoringAppProject.Pages.TutorOperations.TutorHome">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
+            <Label Text="Hello Tutor, world!"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand" />
+            <Button Text="Tutoring Session"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    Clicked="Button_OnClicked_TutoringList"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

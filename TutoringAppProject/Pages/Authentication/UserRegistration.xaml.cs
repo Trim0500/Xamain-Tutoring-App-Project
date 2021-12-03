@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace TutoringAppProject.Pages.Authentication
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserRegistration : ContentPage
+    public partial class UserRegistration
     {
         public UserRegistration()
         {

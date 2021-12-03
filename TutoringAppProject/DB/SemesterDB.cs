@@ -24,10 +24,10 @@ namespace TutoringAppProject.DB
         {
             return (await _client.Child(nameof(Semester)).OnceAsync<Semester>()).Select(item => new Semester
             {
-                key = item.Key,
-                semesterCode = item.Object.semesterCode,
-                semesterSeason = item.Object.semesterSeason,
-                semesterYear = item.Object.semesterYear
+                Key = item.Key,
+                SemesterCode = item.Object.SemesterCode,
+                SemesterSeason = item.Object.SemesterSeason,
+                SemesterYear = item.Object.SemesterYear
             }).ToList();
         }
 
@@ -35,17 +35,17 @@ namespace TutoringAppProject.DB
         {
             return (await _client.Child(nameof(Semester)).OnceAsync<Semester>()).Select(item => new Semester()
             {
-                key = item.Key,
-                semesterCode = item.Object.semesterCode,
-                semesterSeason = item.Object.semesterSeason,
-                semesterYear = item.Object.semesterYear
-            }).FirstOrDefault(i => i.key == key);
+                Key = item.Key,
+                SemesterCode = item.Object.SemesterCode,
+                SemesterSeason = item.Object.SemesterSeason,
+                SemesterYear = item.Object.SemesterYear
+            }).FirstOrDefault(i => i.Key == key);
         }
 
         public async Task<bool> Update(Semester semester)
         {
 
-            await _client.Child(nameof(Semester) + "/" + semester.key).PutAsync(JsonConvert.SerializeObject(semester));
+            await _client.Child(nameof(Semester) + "/" + semester.Key).PutAsync(JsonConvert.SerializeObject(semester));
 
             return true;
 

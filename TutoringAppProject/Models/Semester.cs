@@ -2,9 +2,9 @@
 {
     public class Semester
     {
-        public string key { get; set; }
-        public string semesterCode { get; set; }
-        public string semesterSeason { get; set; }
-        public string semesterYear { get; set; }
+        public string Key { get; set; }
+        public string SemesterCode { get; set; }
+        public string SemesterSeason { get; set; }
+        public string SemesterYear { get; set; }
     }
 }

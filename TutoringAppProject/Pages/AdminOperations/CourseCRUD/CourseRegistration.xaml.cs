@@ -19,9 +19,9 @@ namespace TutoringAppProject.Pages.CourseCRUD
             InitializeComponent();
             _course = course;
             CourseAddButton.IsEnabled = false;
-            SemesterCode.Text = course.semesterCode;
-            CourseCode.Text = course.courseCode;
-            CourseName.Text = course.courseName;
+            SemesterCode.Text = course.SemesterCode;
+            CourseCode.Text = course.CourseCode;
+            CourseName.Text = course.CourseName;
         }
 
         private async void AddCourse(object sender, EventArgs e)
@@ -45,9 +45,9 @@ namespace TutoringAppProject.Pages.CourseCRUD
 
             Course course = new Course()
             {
-                semesterCode = SemesterCode.Text,
-                courseCode = CourseCode.Text,
-                courseName = CourseName.Text,
+                SemesterCode = SemesterCode.Text,
+                CourseCode = CourseCode.Text,
+                CourseName = CourseName.Text,
 
             };
 
@@ -83,10 +83,10 @@ namespace TutoringAppProject.Pages.CourseCRUD
 
             var course = new Course()
             {
-                key = _course.key,
-                semesterCode = SemesterCode.Text,
-                courseCode = CourseCode.Text,
-                courseName = CourseName.Text,
+                Key = _course.Key,
+                SemesterCode = SemesterCode.Text,
+                CourseCode = CourseCode.Text,
+                CourseName = CourseName.Text,
             };
 
             if (await App._courseDB.Update(course))

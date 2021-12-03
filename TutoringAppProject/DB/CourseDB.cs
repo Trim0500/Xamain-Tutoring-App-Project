@@ -32,10 +32,10 @@ namespace TutoringAppProject.DB
         {
             return (await _client.Child(nameof(Course)).OnceAsync<Course>()).Select(item => new Course()
             {
-                key = item.Key,
-                semesterCode = item.Object.semesterCode,
-                courseCode = item.Object.courseCode,
-                courseName = item.Object.courseName
+                Key = item.Key,
+                SemesterCode = item.Object.SemesterCode,
+                CourseCode = item.Object.CourseCode,
+                CourseName = item.Object.CourseName
             }).ToList();
         }
 
@@ -43,17 +43,17 @@ namespace TutoringAppProject.DB
         {
             return (await _client.Child(nameof(Course)).OnceAsync<Course>()).Select(item => new Course()
             {
-                key = item.Key,
-                semesterCode = item.Object.semesterCode,
-                courseCode = item.Object.courseCode,
-                courseName = item.Object.courseName
-            }).FirstOrDefault(i => i.key == key);
+                Key = item.Key,
+                SemesterCode = item.Object.SemesterCode,
+                CourseCode = item.Object.CourseCode,
+                CourseName = item.Object.CourseName
+            }).FirstOrDefault(i => i.Key == key);
         }
 
         public async Task<bool> Update(Course course)
         {
 
-            await _client.Child(nameof(Course) + "/" + course.key).PutAsync(JsonConvert.SerializeObject(course));
+            await _client.Child(nameof(Course) + "/" + course.Key).PutAsync(JsonConvert.SerializeObject(course));
             return true;
 
         }

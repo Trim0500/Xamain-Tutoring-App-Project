@@ -2,9 +2,9 @@
 {
     public class Course
     {
-        public string key { get; set; }
-        public string semesterCode { get; set; }
-        public string courseCode { get; set; }
-        public string courseName { get; set; }
+        public string Key { get; set; }
+        public string SemesterCode { get; set; }
+        public string CourseCode { get; set; }
+        public string CourseName { get; set; }
     }
 }

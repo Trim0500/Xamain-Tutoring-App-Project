@@ -19,9 +19,9 @@ namespace TutoringAppProject.Pages
             InitializeComponent();
             _semester = semester;
             SemesterAddButton.IsEnabled = false;
-            SemesterCode.Text = _semester.semesterCode;
-            SemesterSeason.Text = _semester.semesterSeason;
-            SemesterYear.Text = _semester.semesterYear;
+            SemesterCode.Text = _semester.SemesterCode;
+            SemesterSeason.Text = _semester.SemesterSeason;
+            SemesterYear.Text = _semester.SemesterYear;
 
         }
 
@@ -47,9 +47,9 @@ namespace TutoringAppProject.Pages
 
             Semester semester = new Semester
             {
-                semesterCode = SemesterCode.Text,
-                semesterSeason = SemesterSeason.Text,
-                semesterYear = SemesterYear.Text
+                SemesterCode = SemesterCode.Text,
+                SemesterSeason = SemesterSeason.Text,
+                SemesterYear = SemesterYear.Text
             };
 
             if (await App._semesterDB.Create(semester))
@@ -85,10 +85,10 @@ namespace TutoringAppProject.Pages
 
             Semester semester = new Semester
             {
-                key = _semester.key,
-                semesterCode = SemesterCode.Text,
-                semesterSeason = SemesterSeason.Text,
-                semesterYear = SemesterYear.Text
+                Key = _semester.Key,
+                SemesterCode = SemesterCode.Text,
+                SemesterSeason = SemesterSeason.Text,
+                SemesterYear = SemesterYear.Text
             };
 
             if (await App._semesterDB.Update(semester))
