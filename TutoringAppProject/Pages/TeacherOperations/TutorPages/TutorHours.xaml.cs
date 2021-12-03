@@ -64,7 +64,7 @@ namespace TutoringAppProject.Pages.TeacherOperations.TutorPages
 
             var tutor = await App._tutorDB.ReadById(key);
 
-            // await Navigation.PushAsync(new TutorDetails(tutor));
+            await Navigation.PushAsync(new TutorDetails(tutor));
         }
     }
 }
