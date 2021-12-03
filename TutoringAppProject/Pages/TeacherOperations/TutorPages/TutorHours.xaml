@@ -22,9 +22,6 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
 
                                 <Label Grid.Column="0" Text="{Binding firstName}" BackgroundColor="White" TextColor="Black" FontSize="Small"/>

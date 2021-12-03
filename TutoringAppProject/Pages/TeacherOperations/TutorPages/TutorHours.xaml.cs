@@ -23,18 +23,6 @@ namespace TutoringAppProject.Pages.TeacherOperations.TutorPages
             CourseChoice.ItemsSource = App._currentTeacher.courses;
             CourseChoice.SelectedItem = App._currentTeacher.courses[0];
 
-            //var courses = await App._courseDB.ReadAll();
-
-            //List<Course> teacherCourses = new List<Course>();
-            //string[] teacherCourseArray = App._currentTeacher.courses;
-            //foreach(Course temp in courses)
-            //{
-            //    if(teacherCourseArray.Contains<string>(temp.courseName))
-            //    {
-            //        teacherCourses.Add(temp);
-            //    }
-            //}
-
             tutors = await App._tutorDB.ReadAll();
 
             List<Tutor> courseTutors = new List<Tutor>();
@@ -77,27 +65,6 @@ namespace TutoringAppProject.Pages.TeacherOperations.TutorPages
             var tutor = await App._tutorDB.ReadById(key);
 
             // await Navigation.PushAsync(new TutorDetails(tutor));
-
-            // verify tutor
-
-            //switch (tutor.isVerified)
-            //{
-            //    case false:
-            //        tutor.isVerified = true;
-            //        break;
-            //    case true:
-            //        await DisplayAlert("Verify", "Teacher already verified", "OK");
-            //        return;
-            //}
-
-            //if (await App._tutorDB.Update(tutor))
-            //{
-            //    await DisplayAlert("Verify", "Teacher Verified", "OK");
-            //}
-            //else
-            //{
-            //    await DisplayAlert("Verify", "Could not verify Teacher", "OK");
-            //}
         }
     }
 }
