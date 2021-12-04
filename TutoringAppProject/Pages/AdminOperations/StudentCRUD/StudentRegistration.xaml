@@ -10,6 +10,20 @@
             <Entry x:Name="StudentLastName" Placeholder="LastName" FontSize="Large"></Entry>
             <Entry x:Name="StudentUsername" Placeholder="Username" FontSize="Large"></Entry>
             <Entry x:Name="StudentPassword" Placeholder="Password" FontSize="Large"></Entry>
+            <Picker x:Name="SemesterChoice" ItemsSource="{Binding SemesterCodes}" SelectedIndexChanged="SemesterChoice_SelectedIndexChanged" />
+            <CollectionView x:Name="CoursesBoxes">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding CourseName}" BackgroundColor="White" TextColor="Black" FontSize="Medium">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding CourseName}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <Button x:Name="StudentAddOrUpdateButton" Text="Add Student" Clicked="AddStudentOrUpdate" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>

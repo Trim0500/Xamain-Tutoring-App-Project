@@ -11,6 +11,20 @@
             <DatePicker x:Name="SessionDate" Format="dd-MM-yyyy"/>
             <TimePicker x:Name="SessionStartTime"/>
             <TimePicker x:Name="SessionEndTime"/>
+            <Picker x:Name="SessionCourse" SelectedIndexChanged="SessionCourse_SelectedIndexChanged" />
+            <CollectionView x:Name="StudentsList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding FirstName}" BackgroundColor="White" TextColor="Black" FontSize="Medium">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding FirstName}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <Button x:Name="SessionAddOrUpdateButton" Text="Add Session" Clicked="AddOrUpdateSession" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>

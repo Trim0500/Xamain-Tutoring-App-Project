@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using TutoringAppProject.Models;
 using TutoringAppProject.Models.Enums;
 using TutoringAppProject.Models.System;
+using TutoringAppProject.Models.Users;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages.TutorOperations
@@ -9,12 +11,14 @@ namespace TutoringAppProject.Pages.TutorOperations
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TutorSessionRegister
     {
+        private Tutor _tutor = new Tutor();
         private readonly bool _isUpdate;
         private readonly string _tutorKey;
 
         public TutorSessionRegister()
         {
             InitializeComponent();
+            GetTutor();
             _isUpdate = false;
             SessionAddOrUpdateButton.Text = "Add";
             SessionDate.Date = DateTime.Now;
@@ -23,6 +27,7 @@ namespace TutoringAppProject.Pages.TutorOperations
         public TutorSessionRegister(Session session)
         {
             InitializeComponent();
+            GetTutor();
             _isUpdate = true;
             SessionAddOrUpdateButton.Text = "Update";
             _tutorKey = session.TutorKey;
@@ -42,6 +47,14 @@ namespace TutoringAppProject.Pages.TutorOperations
             SessionEndTime.Time = session.EndTime;
 
         }
+
+        public async void GetTutor()
+        {
+            _tutor = await App.TutorDb.ReadById(App.CurrentKey);
+            SessionCourse.ItemsSource = _tutor.Courses;
+            SessionCourse.SelectedIndex = 0;
+        }
+
         private async void AddOrUpdateSession(object sender, EventArgs e)
         {
             // check if date is in the future
@@ -110,6 +123,16 @@ namespace TutoringAppProject.Pages.TutorOperations
                 }
             }
            
+        }
+
+        private void SessionCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
         }
     }
 }
