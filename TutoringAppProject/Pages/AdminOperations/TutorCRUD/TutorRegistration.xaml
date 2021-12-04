@@ -10,7 +10,7 @@
             <Entry x:Name="TutorLastName" Placeholder="LastName" FontSize="Large"></Entry>
             <Entry x:Name="TutorUsername" Placeholder="Username" FontSize="Large"></Entry>
             <Entry x:Name="TutorPassword" Placeholder="Password" FontSize="Large"></Entry>
-            <Picker x:Name="SemesterChoice" ItemsSource="{Binding semesterCodes}" SelectedIndexChanged="SemesterChoice_SelectedIndexChanged" />
+            <Picker x:Name="SemesterChoice" ItemsSource="{Binding SemesterCodes}" SelectedIndexChanged="SemesterChoice_SelectedIndexChanged" />
             <CollectionView x:Name="CoursesBoxes">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

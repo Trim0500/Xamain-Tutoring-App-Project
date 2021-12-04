@@ -17,7 +17,7 @@ namespace TutoringAppProject.DB
 
         public async Task<bool> Create(Session student)
         {
-            var data = await _client.Child(nameof(Student)).PostAsync(JsonConvert.SerializeObject(student));
+            var data = await _client.Child(nameof(Session)).PostAsync(JsonConvert.SerializeObject(student));
 
             return !string.IsNullOrEmpty(data.Key);
         }
