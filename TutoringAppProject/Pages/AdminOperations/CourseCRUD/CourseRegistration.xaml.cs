@@ -9,6 +9,7 @@ namespace TutoringAppProject.Pages.CourseCRUD
     public partial class CourseRegistration
     {
         private readonly bool _isUpdate;
+        private readonly string _courseKey;
         public CourseRegistration()
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace TutoringAppProject.Pages.CourseCRUD
         {
             InitializeComponent();
             _isUpdate = true;
+            _courseKey = course.Key;
             SemesterCode.Text = course.SemesterCode;
             CourseCode.Text = course.CourseCode;
             CourseName.Text = course.CourseName;
@@ -53,6 +55,7 @@ namespace TutoringAppProject.Pages.CourseCRUD
 
             if (_isUpdate)
             {
+                course.Key = _courseKey;
                 if (await App.CourseDb.Update(course))
                 {
                     await DisplayAlert("Success", "Course updated", "OK");

@@ -15,6 +15,7 @@ namespace TutoringAppProject.Pages.TeacherCRUD
         private List<Course> _courses = new List<Course>();
         private readonly List<string> _teacherCourses = new List<string>();
         private readonly bool _isUpdate = false;
+        private readonly string teacherKey;
         public TeacherRegistration()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace TutoringAppProject.Pages.TeacherCRUD
             InitializeComponent();
             GetCourses();
             _isUpdate = true;
+            teacherKey = teacher.Key;
             TeacherAddOrUpdateButton.Text = "Update";
             TeacherFirstName.Text = teacher.FirstName;
             TeacherLastName.Text =  teacher.LastName;
@@ -97,6 +99,7 @@ namespace TutoringAppProject.Pages.TeacherCRUD
 
             if (_isUpdate)
             {
+                teacher.Key = teacherKey;
                 if (await App.TeacherDb.Create(teacher))
                 {
                     await DisplayAlert("Success", "Student added", "OK");

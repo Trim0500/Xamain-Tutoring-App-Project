@@ -9,6 +9,7 @@ namespace TutoringAppProject.Pages
     public partial class SemesterRegistration
     {
         private readonly bool _isUpdate;
+        private readonly string semesterKey;
         public SemesterRegistration()
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace TutoringAppProject.Pages
         public SemesterRegistration(Semester semester)
         {
             InitializeComponent();
+            semesterKey = semester.Key;
             _isUpdate = true;
             SemesterAddUpdateButton.Text = "Update";
             SemesterCode.Text = semester.SemesterCode;
@@ -56,6 +58,7 @@ namespace TutoringAppProject.Pages
 
             if (_isUpdate)
             {
+                semester.Key = semesterKey;
                 if (await App.SemesterDb.Update(semester))
                 {
                     await DisplayAlert("Success", "Semester updated", "OK");

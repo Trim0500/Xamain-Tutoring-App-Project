@@ -10,6 +10,7 @@ namespace TutoringAppProject.Pages.TutorOperations
     public partial class TutorSessionRegister
     {
         private readonly bool _isUpdate;
+        private readonly string _tutorKey;
 
         public TutorSessionRegister()
         {
@@ -24,6 +25,7 @@ namespace TutoringAppProject.Pages.TutorOperations
             InitializeComponent();
             _isUpdate = true;
             SessionAddOrUpdateButton.Text = "Update";
+            _tutorKey = session.TutorKey;
             
             // setting prefilled values
             if (session.SessionType == TutoringType.Group)
@@ -84,6 +86,7 @@ namespace TutoringAppProject.Pages.TutorOperations
 
             if (_isUpdate)
             {
+                session.Key = _tutorKey;
                 if (await App.SessionDb.Update(session))
                 {
                     await DisplayAlert("Success", "Session updated", "OK");

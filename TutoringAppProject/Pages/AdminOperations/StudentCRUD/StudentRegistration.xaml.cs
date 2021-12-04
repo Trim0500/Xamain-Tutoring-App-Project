@@ -10,6 +10,7 @@ namespace TutoringAppProject.Pages.StudentCRUD
     public partial class StudentRegistration : ContentPage
     {
         private readonly bool _isUpdate;
+        private readonly string studentKey;
         public StudentRegistration()
         {
             InitializeComponent();
@@ -21,6 +22,7 @@ namespace TutoringAppProject.Pages.StudentCRUD
         {
             InitializeComponent();
             StudentAddOrUpdateButton.Text = "Update";
+            studentKey = student.Key;
             _isUpdate = true;
             StudentFirstName.Text = student.FirstName;
             StudentLastName.Text = student.LastName;
@@ -65,6 +67,7 @@ namespace TutoringAppProject.Pages.StudentCRUD
 
             if (_isUpdate)
             {
+                student.Key = studentKey;
                 if (await App.StudentDb.Update(student))
                 {
                     await DisplayAlert("Success", "Student updated", "OK");
