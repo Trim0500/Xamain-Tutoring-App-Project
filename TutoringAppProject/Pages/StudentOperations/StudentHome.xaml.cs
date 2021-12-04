@@ -42,13 +42,58 @@ namespace TutoringAppProject.Pages.StudentOperations
             string sessionKey = ((TappedEventArgs)e).Parameter.ToString();
             Session sessionSelected = await App.SessionDb.ReadById(sessionKey);
 
-            List<string> appendedAttendance = sessionSelected.AttendingStudents.ToList();
-            appendedAttendance.Add(_student.FirstName);
-            sessionSelected.AttendingStudents = appendedAttendance.ToArray();
+            List<string> appendedAttendance = new List<string>();
+            bool isAttending = false;
 
-            await App.SessionDb.Update(sessionSelected);
+            if (sessionSelected.AttendingStudents == null)
+            {
+                await DisplayAlert("No Attendees", "This session has yet to have any attendees, adding you to the session", "OK");
 
-            await DisplayAlert("Marked as Attending", "You've been added to the session!", "OK");
+                appendedAttendance.Add(_student.FirstName);
+                sessionSelected.AttendingStudents = appendedAttendance.ToArray();
+                sessionSelected.SessionType = Models.Enums.TutoringType.Individual;
+
+                isAttending = true;
+
+                await App.SessionDb.Update(sessionSelected);
+
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < sessionSelected.AttendingStudents.Length; i++)
+                {
+                    isAttending = _student.FirstName.Equals(sessionSelected.AttendingStudents[i]);
+                }
+            };
+
+            if(!isAttending) {
+                appendedAttendance = sessionSelected.AttendingStudents.ToList();
+                appendedAttendance.Add(_student.FirstName);
+                sessionSelected.AttendingStudents = appendedAttendance.ToArray();
+                if(sessionSelected.AttendingStudents.Length >= 2)
+                {
+                    sessionSelected.SessionType = Models.Enums.TutoringType.Group;
+                }
+
+                await App.SessionDb.Update(sessionSelected);
+
+                await DisplayAlert("Marked as Attending", "You've been added to the session!", "OK");
+            }
+            else
+            {
+                appendedAttendance = sessionSelected.AttendingStudents.ToList();
+                appendedAttendance.Remove(_student.FirstName);
+                sessionSelected.AttendingStudents = appendedAttendance.ToArray();
+                if (sessionSelected.AttendingStudents.Length < 2)
+                {
+                    sessionSelected.SessionType = Models.Enums.TutoringType.Individual;
+                }
+
+                await App.SessionDb.Update(sessionSelected);
+
+                await DisplayAlert("Removed from Session", "You've been removed from the session!", "OK");
+            };
         }
     }
 }

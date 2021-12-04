@@ -78,7 +78,7 @@ namespace TutoringAppProject.Pages.TutorOperations
             }
 
             var type = RadioButtonGroupTutoring.IsChecked ? TutoringType.Group : TutoringType.Individual;
-
+            
             var session = new Session()
             {
                 Date = SessionDate.Date,
@@ -88,7 +88,7 @@ namespace TutoringAppProject.Pages.TutorOperations
                 TutorKey = App.CurrentKey,
                 CourseName = SessionCourse.SelectedItem.ToString(),
                 AttendingStudents = studentNames.ToArray()
-            };
+        };
 
             if (_isUpdate)
             {
