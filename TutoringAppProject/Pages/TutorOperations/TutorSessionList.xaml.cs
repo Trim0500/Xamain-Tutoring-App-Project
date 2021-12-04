@@ -14,7 +14,7 @@ namespace TutoringAppProject.Pages.TutorOperations
 
         protected override async void OnAppearing()
         {
-            var sessions = await App._sessionDB.ReadAll();
+            var sessions = await App.SessionDb.ReadAll();
             SessionCollectionView.ItemsSource = sessions;
             
         }
@@ -22,10 +22,8 @@ namespace TutoringAppProject.Pages.TutorOperations
         private async void key_tap_Tapped_update(object sender, EventArgs e)
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
-
-            await DisplayAlert("Show ID", key, "OK");
-
-            var session = await App._sessionDB.ReadById(key);
+            
+            var session = await App.SessionDb.ReadById(key);
             
             await Navigation.PushAsync(new TutorSessionRegister(session));
         }
@@ -34,7 +32,7 @@ namespace TutoringAppProject.Pages.TutorOperations
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
 
-            await App._sessionDB.Delete(key);
+            await App.SessionDb.Delete(key);
             
             await DisplayAlert("Delete", "Session Deleted with key: " + key, "OK");
             

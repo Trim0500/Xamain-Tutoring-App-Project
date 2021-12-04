@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Firebase.Database;
 using Newtonsoft.Json;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.System;
 
 namespace TutoringAppProject.DB
 {
@@ -18,14 +19,7 @@ namespace TutoringAppProject.DB
         {
             var data = await _client.Child(nameof(Course)).PostAsync(JsonConvert.SerializeObject(course));
 
-            if (!String.IsNullOrEmpty(data.Key))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return !string.IsNullOrEmpty(data.Key);
         }
 
         public async Task<List<Course>> ReadAll()

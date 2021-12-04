@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Firebase.Database;
 using Newtonsoft.Json;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.Users;
 
 namespace TutoringAppProject.DB
 {
@@ -25,12 +26,12 @@ namespace TutoringAppProject.DB
         {
             return (await _client.Child(nameof(Admin)).OnceAsync<Admin>()).Select(item => new Admin()
             {
-                key = item.Key,
-                firstName = item.Object.firstName,
-                lastName = item.Object.lastName,
-                userName = item.Object.userName,
-                password = item.Object.password,
-                role = item.Object.role
+                Key = item.Key,
+                FirstName = item.Object.FirstName,
+                LastName = item.Object.LastName,
+                Username = item.Object.Username,
+                Password = item.Object.Password,
+                Role = item.Object.Role
             }).ToList();
         }
 
@@ -38,19 +39,19 @@ namespace TutoringAppProject.DB
         {
             return (await _client.Child(nameof(Admin)).OnceAsync<Admin>()).Select(item => new Admin()
             {
-                key = item.Key,
-                firstName = item.Object.firstName,
-                lastName = item.Object.lastName,
-                userName = item.Object.userName,
-                password = item.Object.password,
-                role = item.Object.role
-            }).FirstOrDefault(i => i.key == key);
+                Key = item.Key,
+                FirstName = item.Object.FirstName,
+                LastName = item.Object.LastName,
+                Username = item.Object.Username,
+                Password = item.Object.Password,
+                Role = item.Object.Role
+            }).FirstOrDefault(i => i.Key == key);
         }
 
         public async Task<bool> Update(Admin course)
         {
 
-            await _client.Child(nameof(Admin) + "/" + course.key).PutAsync(JsonConvert.SerializeObject(course));
+            await _client.Child(nameof(Admin) + "/" + course.Key).PutAsync(JsonConvert.SerializeObject(course));
             return true;
 
         }

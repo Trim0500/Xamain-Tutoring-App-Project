@@ -14,7 +14,7 @@ namespace TutoringAppProject.Pages.StudentCRUD
 
         protected override async void OnAppearing()
         {
-            var semesters = await App._studentDB.ReadAll();
+            var semesters = await App.StudentDb.ReadAll();
             StudentCollectionView.ItemsSource = semesters;
         }
 
@@ -24,7 +24,7 @@ namespace TutoringAppProject.Pages.StudentCRUD
 
             await DisplayAlert("Show ID", key, "OK");
 
-            var student = await App._studentDB.ReadById(key);
+            var student = await App.StudentDb.ReadById(key);
             await Navigation.PushAsync(new StudentRegistration(student));
         }
 
@@ -32,7 +32,7 @@ namespace TutoringAppProject.Pages.StudentCRUD
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
 
-            await App._studentDB.Delete(key);
+            await App.StudentDb.Delete(key);
             
             await DisplayAlert("Delete", "Student Deleted with key: " + key, "OK");
             
@@ -48,21 +48,21 @@ namespace TutoringAppProject.Pages.StudentCRUD
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
             
-            var student = await App._studentDB.ReadById(key);
+            var student = await App.StudentDb.ReadById(key);
             
             // verify student
 
-            switch (student.isVerified)
+            switch (student.IsVerified)
             {
                 case false:
-                    student.isVerified = true;
+                    student.IsVerified = true;
                     break;
                 case true:
                     await DisplayAlert("Verify", "Student already verified", "OK");
                     return;
             }
 
-            if (await App._studentDB.Update(student))
+            if (await App.StudentDb.Update(student))
             {
                 await DisplayAlert("Verify", "Student Verified", "OK");
             }

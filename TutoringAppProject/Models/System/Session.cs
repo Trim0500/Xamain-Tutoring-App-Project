@@ -1,7 +1,7 @@
 ﻿using System;
-using TutoringAppProject.Enums;
+using TutoringAppProject.Models.Enums;
 
-namespace TutoringAppProject.Models
+namespace TutoringAppProject.Models.System
 {
     public class Session
     {

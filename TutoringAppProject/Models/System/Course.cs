@@ -1,4 +1,4 @@
-﻿namespace TutoringAppProject.Models
+﻿namespace TutoringAppProject.Models.System
 {
     public class Course
     {

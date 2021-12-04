@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.Users;
 using TutoringAppProject.Pages.TeacherCRUD;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,7 +21,7 @@ namespace TutoringAppProject.Pages
         
         protected override async void OnAppearing()
         {
-            List<Teacher> teachers = await App._teacherDB.ReadAll();
+            List<Teacher> teachers = await App.TeacherDb.ReadAll();
             TeacherCollectionView.ItemsSource = teachers;
         }
 
@@ -30,7 +31,7 @@ namespace TutoringAppProject.Pages
 
             await DisplayAlert("Show ID", key, "OK");
 
-            var teacher = await App._teacherDB.ReadById(key);
+            var teacher = await App.TeacherDb.ReadById(key);
             await Navigation.PushAsync(new TeacherRegistration(teacher));
         }
 
@@ -38,7 +39,7 @@ namespace TutoringAppProject.Pages
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
 
-            await App._teacherDB.Delete(key);
+            await App.TeacherDb.Delete(key);
             
             await DisplayAlert("Delete", "Teacher Deleted with key: " + key, "OK");
             
@@ -53,21 +54,21 @@ namespace TutoringAppProject.Pages
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
             
-            var teacher = await App._teacherDB.ReadById(key);
+            var teacher = await App.TeacherDb.ReadById(key);
             
             // verify teacher
 
-            switch (teacher.isVerified)
+            switch (teacher.IsVerified)
             {
                 case false:
-                    teacher.isVerified = true;
+                    teacher.IsVerified = true;
                     break;
                 case true:
                     await DisplayAlert("Verify", "Teacher already verified", "OK");
                     return;
             }
 
-            if (await App._teacherDB.Update(teacher))
+            if (await App.TeacherDb.Update(teacher))
             {
                 await DisplayAlert("Verify", "Teacher Verified", "OK");
             }

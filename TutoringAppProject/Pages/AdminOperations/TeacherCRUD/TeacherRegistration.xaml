@@ -15,17 +15,16 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="{Binding courseName}" BackgroundColor="White" TextColor="Black" FontSize="Medium">
+                            <Label Text="{Binding CourseName}" BackgroundColor="White" TextColor="Black" FontSize="Medium">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding courseName}"/>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding CourseName}"/>
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button x:Name="TeacherAddButton" Text="Add Teacher" Clicked="AddTeacher" VerticalOptions="End" />
-            <Button x:Name="TeacherUpdateButton" Text="Update Teacher" Clicked="UpdateTeacher" VerticalOptions="End"></Button>
+            <Button x:Name="TeacherAddOrUpdateButton" Text="Add Teacher" Clicked="AddTeacher" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

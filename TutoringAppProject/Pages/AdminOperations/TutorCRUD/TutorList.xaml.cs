@@ -1,5 +1,6 @@
 ﻿using System;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +16,7 @@ namespace TutoringAppProject.Pages.TutorCRUD
         
         protected override async void OnAppearing()
         {
-            var tutors = await App._tutorDB.ReadAll();
+            var tutors = await App.TutorDb.ReadAll();
             TutorCollectionView.ItemsSource = tutors;
         }
 
@@ -25,7 +26,7 @@ namespace TutoringAppProject.Pages.TutorCRUD
 
             await DisplayAlert("Show ID", key, "OK");
 
-            Tutor tutor = await App._tutorDB.ReadById(key);
+            Tutor tutor = await App.TutorDb.ReadById(key);
             
             await Navigation.PushAsync(new TutorRegistration(tutor));
         }
@@ -34,7 +35,7 @@ namespace TutoringAppProject.Pages.TutorCRUD
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
 
-            await App._teacherDB.Delete(key);
+            await App.TeacherDb.Delete(key);
             
             await DisplayAlert("Delete", "Tutor Deleted with key: " + key, "OK");
             
@@ -50,21 +51,21 @@ namespace TutoringAppProject.Pages.TutorCRUD
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
             
-            var tutor = await App._tutorDB.ReadById(key);
+            var tutor = await App.TutorDb.ReadById(key);
             
             // verify tutor
 
-            switch (tutor.isVerified)
+            switch (tutor.IsVerified)
             {
                 case false:
-                    tutor.isVerified = true;
+                    tutor.IsVerified = true;
                     break;
                 case true:
                     await DisplayAlert("Verify", "Teacher already verified", "OK");
                     return;
             }
 
-            if (await App._tutorDB.Update(tutor))
+            if (await App.TutorDb.Update(tutor))
             {
                 await DisplayAlert("Verify", "Teacher Verified", "OK");
             }

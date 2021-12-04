@@ -1,5 +1,6 @@
 ﻿using System;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -43,14 +44,14 @@ namespace TutoringAppProject.Pages.Authentication
             {
                 var student = new Student
                 {
-                    firstName= FirstName.Text,
-                    lastName = LastName.Text,
-                    userName = Username.Text,
-                    password = Password.Text,
-                    isVerified = false
+                    FirstName= FirstName.Text,
+                    LastName = LastName.Text,
+                    Username = Username.Text,
+                    Password = Password.Text,
+                    IsVerified = false
                 };
                 
-                if (await App._studentDB.Create(student))
+                if (await App.StudentDb.Create(student))
                 {
                     await DisplayAlert("Success", "Student added. You will need to wait to be verified by a admin or a teacher", "OK");
                     await Navigation.PopAsync();
@@ -64,14 +65,14 @@ namespace TutoringAppProject.Pages.Authentication
             {
                 var teacher = new Teacher
                 {
-                    firstName = FirstName.Text,
-                    lastName = LastName.Text,
-                    userName = Username.Text,
-                    password = Password.Text,
-                    isVerified = false
+                    FirstName = FirstName.Text,
+                    LastName = LastName.Text,
+                    Username = Username.Text,
+                    Password = Password.Text,
+                    IsVerified = false
                 };
                 
-                if (await App._teacherDB.Create(teacher))
+                if (await App.TeacherDb.Create(teacher))
                 {
                     await DisplayAlert("Success", "Teacher added. You will need to wait to be verified by a admin", "OK");
                     await Navigation.PopAsync();
@@ -85,14 +86,14 @@ namespace TutoringAppProject.Pages.Authentication
             {
                 var tutor = new Tutor
                 {
-                    firstName = FirstName.Text,
-                    lastName = LastName.Text,
-                    userName = Username.Text,
-                    password = Password.Text,
-                    isVerified = false
+                    FirstName = FirstName.Text,
+                    LastName = LastName.Text,
+                    Username = Username.Text,
+                    Password = Password.Text,
+                    IsVerified = false
                 };
                 
-                if (await App._tutorDB.Create(tutor))
+                if (await App.TutorDb.Create(tutor))
                 {
                     await DisplayAlert("Success", "Tutor added. You will need to wait to be verified by a admin", "OK");
                     await Navigation.PopAsync();

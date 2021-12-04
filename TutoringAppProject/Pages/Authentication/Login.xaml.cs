@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
-using TutoringAppProject.Enums;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.Enums;
+using TutoringAppProject.Models.Users;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages.Authentication
@@ -24,7 +25,7 @@ namespace TutoringAppProject.Pages.Authentication
         {
             var userName = UserEdit.Text;
             var password = PassEdit.Text;
-            App._currentUser = null;
+            App.CurrentKey = null;
 
             if (string.IsNullOrWhiteSpace(UserEdit.Text) || string.IsNullOrWhiteSpace(PassEdit.Text))
             {
@@ -34,13 +35,14 @@ namespace TutoringAppProject.Pages.Authentication
 
             if (StudentRadChk.IsChecked)
             {
-                var student = await App._studentDB.ReadAll();
-                foreach (var s in student.Where(s => s.userName == userName && s.password == password))
+                var student = await App.StudentDb.ReadAll();
+                foreach (var s in student.Where(s => s.Username == userName && s.Password == password))
                 {
-                    if (s.isVerified)
+                    if (s.IsVerified)
                     {
                         await DisplayAlert("Success", "Login Successful", "OK");
-                        App._currentUser = s;
+                        // create a new user object
+                        App.CurrentKey = s.Key;
                         await Navigation.PushAsync(new StudentOperations.StudentHome());
                         return;
                     }
@@ -52,14 +54,14 @@ namespace TutoringAppProject.Pages.Authentication
 
             if (TeacherRadChk.IsChecked)
             {
-                var teacher = await App._teacherDB.ReadAll();
-                foreach (var t in teacher.Where(t => t.userName == userName && t.password == password))
+                var teacher = await App.TeacherDb.ReadAll();
+                foreach (var t in teacher.Where(t => t.Username == userName && t.Password == password))
                 {
-                    if (t.isVerified)
+                    if (t.IsVerified)
                     {
                         
                         await DisplayAlert("Success", "Login Successful", "OK");
-                        App._currentUser = t;
+                        App.CurrentKey = t.Key;
                         await Navigation.PushAsync(new TeacherOperations.TeacherHome());
                         return;
                     }
@@ -70,13 +72,13 @@ namespace TutoringAppProject.Pages.Authentication
 
             if (TutorRadChk.IsChecked)
             {
-                var tutors = await App._tutorDB.ReadAll();
-                foreach (var tutor in tutors.Where(tutor => tutor.userName == userName && tutor.password == password))
+                var tutors = await App.TutorDb.ReadAll();
+                foreach (var tutor in tutors.Where(tutor => tutor.Username == userName && tutor.Password == password))
                 {
-                    if (tutor.isVerified)
+                    if (tutor.IsVerified)
                     {
                         await DisplayAlert("Success", "Login Successful", "OK");
-                        App._currentUser = tutor;
+                        App.CurrentKey = tutor.Key;
                         await Navigation.PushAsync(new TutorOperations.TutorHome());
                         return;
                     }
@@ -87,18 +89,18 @@ namespace TutoringAppProject.Pages.Authentication
 
             if (AdminRadChk.IsChecked)
             {
-                var admins = await App._adminDb.ReadAll();
-                foreach (var admin in admins.Where(admin => admin.userName == userName && admin.password == password))
+                var admins = await App.AdminDb.ReadAll();
+                foreach (var admin in admins.Where(admin => admin.Username == userName && admin.Password == password))
                 {
                     await DisplayAlert("Success", "Login Successful", "OK");
-                    App._currentUser = admin;
+                    App.CurrentKey = admin.Key;
                     await Navigation.PushAsync(new AdminHome());
                     return;
                 }
 
                 
             }
-            if (App._currentUser == null) return;
+            if (App.CurrentKey == null) return;
             
             await DisplayActionSheet("Error", "Cancel", null, "Invalid Username or Password.");
 
@@ -111,18 +113,18 @@ namespace TutoringAppProject.Pages.Authentication
         //create new admin if not found
         private async void CreateAdmin()
         {
-            var admins = await App._adminDb.ReadAll();
+            var admins = await App.AdminDb.ReadAll();
             if (admins.Count != 0) return;
             var newAdmin = new Admin()
             {
-                userName = "Trim",
-                password = "TrLa0519.",
-                firstName = "Tristan",
-                lastName = "Lafleur",
-                role = RoleType.Admin
+                Username = "Trim",
+                Password = "TrLa0519.",
+                FirstName = "Tristan",
+                LastName = "Lafleur",
+                Role = RoleType.Admin
             };
             
-            if (await App._adminDb.Create(newAdmin))
+            if (await App.AdminDb.Create(newAdmin))
             {
                 await DisplayAlert("Success", "Saved", "Cancel");
             }

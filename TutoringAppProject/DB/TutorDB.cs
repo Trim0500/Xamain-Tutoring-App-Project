@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Firebase.Database.Query;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.Users;
 
 namespace TutoringAppProject.DB
 {
@@ -25,7 +26,7 @@ namespace TutoringAppProject.DB
         // get tutor courses by tutor id
         public async Task<List<string>> GetTutorCourses(string tutorId)
         {
-            var data = await _client.Child(nameof(Tutor)).Child(tutorId).Child(nameof(Tutor.courses)).OnceAsync<string>();
+            var data = await _client.Child(nameof(Tutor)).Child(tutorId).Child(nameof(Tutor.Courses)).OnceAsync<string>();
 
             return data.Select(x => x.Object).ToList();
         }
@@ -34,13 +35,13 @@ namespace TutoringAppProject.DB
         {
             return (await _client.Child(nameof(Tutor)).OnceAsync<Tutor>()).Select(item => new Tutor
             {
-                key = item.Key,
-                firstName = item.Object.firstName,
-                lastName = item.Object.lastName,
-                userName = item.Object.userName,
-                password = item.Object.password,
-                role = item.Object.role,
-                isVerified = item.Object.isVerified
+                Key = item.Key,
+                FirstName = item.Object.FirstName,
+                LastName = item.Object.LastName,
+                Username = item.Object.Username,
+                Password = item.Object.Password,
+                Role = item.Object.Role,
+                IsVerified = item.Object.IsVerified
             }).ToList();
         }
 
@@ -48,21 +49,21 @@ namespace TutoringAppProject.DB
         {
             return (await _client.Child(nameof(Tutor)).OnceAsync<Tutor>()).Select(item => new Tutor()
             {
-                key = item.Key,
-                firstName = item.Object.firstName,
-                lastName = item.Object.lastName,
-                userName = item.Object.userName,
-                password = item.Object.password,
-                role = item.Object.role,
-                isVerified = item.Object.isVerified
+                Key = item.Key,
+                FirstName = item.Object.FirstName,
+                LastName = item.Object.LastName,
+                Username = item.Object.Username,
+                Password = item.Object.Password,
+                Role = item.Object.Role,
+                IsVerified = item.Object.IsVerified
 
-            }).FirstOrDefault(i => i.key == key);
+            }).FirstOrDefault(i => i.Key == key);
         }
 
         public async Task<bool> Update(Tutor tutor)
         {
 
-            await _client.Child(nameof(Tutor) + "/" + tutor.key).PutAsync(JsonConvert.SerializeObject(tutor));
+            await _client.Child(nameof(Tutor) + "/" + tutor.Key).PutAsync(JsonConvert.SerializeObject(tutor));
 
             return true;
 

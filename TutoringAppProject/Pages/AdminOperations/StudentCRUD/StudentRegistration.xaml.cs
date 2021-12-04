@@ -1,38 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TutoringAppProject.Pages
+namespace TutoringAppProject.Pages.StudentCRUD
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StudentRegistration : ContentPage
     {
-        public Student _student { get; set; }
+        private readonly bool _isUpdate;
         public StudentRegistration()
         {
             InitializeComponent();
-            StudentUpdateButton.IsEnabled = false;
-            StudentUpdateButton.IsVisible = false;
+            StudentAddOrUpdateButton.Text = "Add";
+            _isUpdate = false;
         }
-        
+
         public StudentRegistration(Student student)
         {
             InitializeComponent();
-            _student = student;
-            StudentAddButton.IsEnabled = false;
-            StudentAddButton.IsVisible = false;
-            StudentFirstName.Text = _student.firstName;
-            StudentLastName.Text = _student.lastName;
-            StudentUsername.Text = _student.userName;
-            StudentPassword.Text = _student.password;
-            
+            StudentAddOrUpdateButton.Text = "Update";
+            _isUpdate = true;
+            StudentFirstName.Text = student.FirstName;
+            StudentLastName.Text = student.LastName;
+            StudentUsername.Text = student.Username;
+            StudentPassword.Text = student.Password;
         }
-        private async void AddStudent(object sender, EventArgs e)
+
+        private async void AddStudentOrUpdate(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(StudentFirstName.Text))
             {
@@ -60,69 +56,40 @@ namespace TutoringAppProject.Pages
 
             var student = new Student()
             {
-                firstName = StudentFirstName.Text,
-                lastName = StudentLastName.Text,
-                userName = StudentUsername.Text,
-                password = StudentPassword.Text,
-                isVerified = true
+                FirstName = StudentFirstName.Text,
+                LastName = StudentLastName.Text,
+                Username = StudentUsername.Text,
+                Password = StudentPassword.Text,
+                IsVerified = true
             };
 
-            if (await App._studentDB.Create(student))
+            if (_isUpdate)
             {
-                await DisplayAlert("Success", "Student added", "OK");
-                await Navigation.PopAsync();
+                if (await App.StudentDb.Update(student))
+                {
+                    await DisplayAlert("Success", "Student updated", "OK");
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Student not updated", "OK");
+                }
             }
             else
             {
-                await DisplayAlert("Error", "Student not added", "OK");
+                if (await App.StudentDb.Create(student))
+                {
+                    await DisplayAlert("Success", "Student added", "OK");
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Student not added", "OK");
+                }
             }
         }
-        
-        private async void UpdateStudent(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(StudentFirstName.Text))
-            {
-                await DisplayAlert("Error", "Please enter a first name", "OK");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(StudentLastName.Text))
-            {
-                await DisplayAlert("Error", "Please enter a last name", "OK");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(StudentUsername.Text))
-            {
-                await DisplayAlert("Error", "Please enter a username", "OK");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(StudentPassword.Text))
-            {
-                await DisplayAlert("Error", "Please enter a password", "OK");
-                return;
-            }
-
-            Student student = new Student()
-            {
-                key = _student.key,
-                firstName = StudentFirstName.Text,
-                lastName = StudentLastName.Text,
-                userName = StudentUsername.Text,
-                password = StudentPassword.Text
-            };
-
-            if (await App._studentDB.Update(student))
-            {
-                await DisplayAlert("Success", "updated Student", "OK");
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                await DisplayAlert("Error", "Student not updated", "OK");
-            }
-        }
-
     }
 }
+
+            
+            

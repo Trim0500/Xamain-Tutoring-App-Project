@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +17,7 @@ namespace TutoringAppProject.Pages.SemesterCRUD
 
         protected override async void OnAppearing()
         {
-            List<Semester> semesters = await App._semesterDB.ReadAll();
+            List<Semester> semesters = await App.SemesterDb.ReadAll();
             SemesterCollectionView.ItemsSource = semesters;
         }
         private async void key_tap_Tapped_update(object sender, EventArgs e)
@@ -25,7 +26,7 @@ namespace TutoringAppProject.Pages.SemesterCRUD
 
             await DisplayAlert("Show ID", key, "OK");
 
-            var semester = await App._semesterDB.ReadById(key);
+            var semester = await App.SemesterDb.ReadById(key);
             await Navigation.PushAsync(new SemesterRegistration(semester));
         }
 
@@ -38,7 +39,7 @@ namespace TutoringAppProject.Pages.SemesterCRUD
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
 
-            await App._semesterDB.Delete(key);
+            await App.SemesterDb.Delete(key);
 
             await DisplayAlert("Delete", "Semester Deleted with key: " + key, "OK");
             

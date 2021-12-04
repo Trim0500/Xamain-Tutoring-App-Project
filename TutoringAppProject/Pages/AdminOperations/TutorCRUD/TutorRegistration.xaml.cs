@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.System;
+using TutoringAppProject.Models.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,35 +16,36 @@ namespace TutoringAppProject.Pages.TutorCRUD
         private List<Semester> _semesters = new List<Semester>();
         private List<Course> _courses = new List<Course>();
         private readonly List<string> _tutorCourses = new List<string>();
+        private readonly bool _isUpdate;
         public TutorRegistration()
         {
             InitializeComponent();
             GetCourses();
-            TutorUpdateButton.IsVisible = false;
-            TutorUpdateButton.IsEnabled = false;
+            _isUpdate = false;
+            TutorFirstName.Text = "";
         }
         
         public TutorRegistration(Tutor tutor)
         {
             InitializeComponent();
-            Tutor = tutor;
             GetCourses();
-            TutorAddButton.IsVisible = false;
-            TutorAddButton.IsEnabled = false;
-            TutorFirstName.Text = tutor.firstName;
-            TutorLastName.Text =  tutor.lastName;
-            TutorUsername.Text = tutor.userName;
-            TutorPassword.Text = tutor.password;
+            Tutor = tutor;
+            _isUpdate = true;
+            TutorAddUpdateButton.Text = "Update";
+            TutorFirstName.Text = tutor.FirstName;
+            TutorLastName.Text =  tutor.LastName;
+            TutorUsername.Text = tutor.Username;
+            TutorPassword.Text = tutor.Password;
 
         }
 
         public async void GetCourses()
         {
-            _semesters = await App._semesterDB.ReadAll();
+            _semesters = await App.SemesterDb.ReadAll();
             var semesterCodes = _semesters.Select(temp => temp.SemesterCode).ToList();
             SemesterChoice.ItemsSource = semesterCodes;
             SemesterChoice.SelectedIndex = 0;
-            _courses = await App._courseDB.ReadAll();
+            _courses = await App.CourseDb.ReadAll();
             var semesterCourses = _courses.Where(temp => temp.SemesterCode.Equals(semesterCodes[0])).ToList();
             CoursesBoxes.ItemsSource = semesterCourses;
         }
@@ -84,72 +87,39 @@ namespace TutoringAppProject.Pages.TutorCRUD
 
             var tutor = new Tutor()
             {
-                firstName = TutorFirstName.Text,
-                lastName = TutorLastName.Text,
-                userName = TutorUsername.Text,
-                password = TutorPassword.Text,
-                courses = _tutorCourses.ToArray(),
-                isVerified = true
+                FirstName = TutorFirstName.Text,
+                LastName = TutorLastName.Text,
+                Username = TutorUsername.Text,
+                Password = TutorPassword.Text,
+                Courses = _tutorCourses.ToArray(),
+                IsVerified = true
             };
 
-            if (await App._tutorDB.Create(tutor))
+            if (_isUpdate)
             {
-                await DisplayAlert("Success", "Tutor added", "OK");
-                await Navigation.PopAsync();
+                if (await App.TutorDb.Update(tutor))
+                {
+                    await DisplayAlert("Success", "updated Tutor", "OK");
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Teacher not Tutor", "OK");
+                }
             }
             else
             {
-                await DisplayAlert("Error", "Tutor not added", "OK");
+                if (await App.TutorDb.Create(tutor))
+                {
+                    await DisplayAlert("Success", "Tutor added", "OK");
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Tutor not added", "OK");
+                }
             }
         }
-        
-        private async void UpdateTutor(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(TutorFirstName.Text))
-            {
-                await DisplayAlert("Error", "Please enter a first name", "OK");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(TutorLastName.Text))
-            {
-                await DisplayAlert("Error", "Please enter a last name", "OK");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(TutorUsername.Text))
-            {
-                await DisplayAlert("Error", "Please enter a username", "OK");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(TutorPassword.Text))
-            {
-                await DisplayAlert("Error", "Please enter a password", "OK");
-                return;
-            }
-
-            var tutor = new Tutor()
-            {
-                key = Tutor.key,
-                firstName = TutorFirstName.Text,
-                lastName = TutorLastName.Text,
-                userName = TutorUsername.Text,
-                password = TutorPassword.Text,
-                courses = _tutorCourses.ToArray()
-            };
-
-            if (await App._tutorDB.Update(tutor))
-            {
-                await DisplayAlert("Success", "updated Tutor", "OK");
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                await DisplayAlert("Error", "Teacher not Tutor", "OK");
-            }
-        }
-
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var code = ((TappedEventArgs)e).Parameter.ToString();

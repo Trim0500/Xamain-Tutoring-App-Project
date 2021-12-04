@@ -1,6 +1,7 @@
 ﻿using System;
-using TutoringAppProject.Enums;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.Enums;
+using TutoringAppProject.Models.System;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages.TutorOperations
@@ -8,7 +9,6 @@ namespace TutoringAppProject.Pages.TutorOperations
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TutorSessionRegister
     {
-        private readonly Session _session;
         private readonly bool _isUpdate;
 
         public TutorSessionRegister()
@@ -24,8 +24,9 @@ namespace TutoringAppProject.Pages.TutorOperations
             InitializeComponent();
             _isUpdate = true;
             SessionAddOrUpdateButton.Text = "Update";
-            _session = session;
-            if (_session.SessionType == TutoringType.Group)
+            
+            // setting prefilled values
+            if (session.SessionType == TutoringType.Group)
             {
                 RadioButtonGroupTutoring.IsChecked = true;
             }
@@ -33,9 +34,10 @@ namespace TutoringAppProject.Pages.TutorOperations
             {
                 RadioButtonIndividualTutoring.IsChecked = true;
             }
-            SessionDate.Date = _session.Date;
-            SessionStartTime.Time = _session.StartTime;
-            SessionEndTime.Time = _session.EndTime;
+            
+            SessionDate.Date = session.Date;
+            SessionStartTime.Time = session.StartTime;
+            SessionEndTime.Time = session.EndTime;
 
         }
         private async void AddOrUpdateSession(object sender, EventArgs e)
@@ -77,12 +79,12 @@ namespace TutoringAppProject.Pages.TutorOperations
                 StartTime = SessionStartTime.Time,
                 EndTime = SessionEndTime.Time,
                 SessionType = type,
-                TutorKey = App._currentUser.key
+                TutorKey = App.CurrentKey
             };
 
             if (_isUpdate)
             {
-                if (await App._sessionDB.Update(session))
+                if (await App.SessionDb.Update(session))
                 {
                     await DisplayAlert("Success", "Session updated", "OK");
                     await Navigation.PopAsync();
@@ -94,7 +96,7 @@ namespace TutoringAppProject.Pages.TutorOperations
             }
             else
             {
-                if (await App._sessionDB.Create(session))
+                if (await App.SessionDb.Create(session))
                 {
                     await DisplayAlert("Success", "Semester added", "OK");
                     await Navigation.PopAsync();

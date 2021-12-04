@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace TutoringAppProject.Enums
+﻿namespace TutoringAppProject.Models.Enums
 {
     public enum TutoringType
     {

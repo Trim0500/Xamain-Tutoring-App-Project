@@ -1,5 +1,6 @@
 ﻿using System;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.System;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages
@@ -7,21 +8,22 @@ namespace TutoringAppProject.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SemesterRegistration
     {
-        private readonly Semester _semester;
+        private readonly bool _isUpdate;
         public SemesterRegistration()
         {
             InitializeComponent();
-            SemesterUpdateButton.IsEnabled = false;
+            _isUpdate = false;
+            SemesterAddUpdateButton .Text = "Add";
         }
 
         public SemesterRegistration(Semester semester)
         {
             InitializeComponent();
-            _semester = semester;
-            SemesterAddButton.IsEnabled = false;
-            SemesterCode.Text = _semester.SemesterCode;
-            SemesterSeason.Text = _semester.SemesterSeason;
-            SemesterYear.Text = _semester.SemesterYear;
+            _isUpdate = true;
+            SemesterAddUpdateButton.Text = "Update";
+            SemesterCode.Text = semester.SemesterCode;
+            SemesterSeason.Text = semester.SemesterSeason;
+            SemesterYear.Text = semester.SemesterYear;
 
         }
 
@@ -45,60 +47,36 @@ namespace TutoringAppProject.Pages
                 return;
             }
 
-            Semester semester = new Semester
+            var semester = new Semester
             {
                 SemesterCode = SemesterCode.Text,
                 SemesterSeason = SemesterSeason.Text,
                 SemesterYear = SemesterYear.Text
             };
 
-            if (await App._semesterDB.Create(semester))
+            if (_isUpdate)
             {
-                await DisplayAlert("Success", "Semester added", "OK");
-                await Navigation.PopAsync();
+                if (await App.SemesterDb.Update(semester))
+                {
+                    await DisplayAlert("Success", "Semester updated", "OK");
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Semester was not updated", "OK");
+                }
             }
             else
             {
-                await DisplayAlert("Error", "Semester not added", "OK");
-            }
-        }
-
-        private async void UpdateSemester(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(SemesterSeason.Text))
-            {
-                await DisplayAlert("Error", "Please enter a semester season", "OK");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(SemesterCode.Text) && SemesterCode.Text.Length != 4)
-            {
-                await DisplayAlert("Error", "Please enter a valid semester code", "OK");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(SemesterYear.Text))
-            {
-                await DisplayAlert("Error", "Please enter a semester year", "OK");
-                return;
-            }
-
-            Semester semester = new Semester
-            {
-                Key = _semester.Key,
-                SemesterCode = SemesterCode.Text,
-                SemesterSeason = SemesterSeason.Text,
-                SemesterYear = SemesterYear.Text
-            };
-
-            if (await App._semesterDB.Update(semester))
-            {
-                await DisplayAlert("Success", "Semester updated", "OK");
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                await DisplayAlert("Error", "Semester was not updated", "OK");
+                if (await App.SemesterDb.Create(semester))
+                {
+                    await DisplayAlert("Success", "Semester added", "OK");
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Semester not added", "OK");
+                }
             }
         }
     }

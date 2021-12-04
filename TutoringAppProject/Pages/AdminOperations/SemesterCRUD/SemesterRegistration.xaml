@@ -10,8 +10,7 @@
             <Entry x:Name="SemesterCode" Placeholder="Semester Code" FontSize="Large"></Entry>
             <Entry x:Name="SemesterSeason" Placeholder="Semester Season" FontSize="Large"></Entry>
             <Entry x:Name="SemesterYear" Placeholder="Semester Year" FontSize="Large"></Entry>
-            <Button x:Name="SemesterAddButton" Text="Add Semester" Clicked="AddSemester" VerticalOptions="End" />
-            <Button x:Name="SemesterUpdateButton" Text="Update Semester" Clicked="UpdateSemester" VerticalOptions="End"></Button>
+            <Button x:Name="SemesterAddUpdateButton" Text="Add Semester" Clicked="AddSemester" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

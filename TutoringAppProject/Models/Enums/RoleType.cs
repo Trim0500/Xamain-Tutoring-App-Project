@@ -1,4 +1,4 @@
-﻿namespace TutoringAppProject.Enums
+﻿namespace TutoringAppProject.Models.Enums
 {
     public enum RoleType
     {

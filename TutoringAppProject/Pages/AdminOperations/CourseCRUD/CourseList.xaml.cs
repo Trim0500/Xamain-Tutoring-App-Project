@@ -1,5 +1,6 @@
 ﻿using System;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +16,7 @@ namespace TutoringAppProject.Pages.CourseCRUD
 
         protected override async void OnAppearing()
         {
-            var semesters = await App._courseDB.ReadAll();
+            var semesters = await App.CourseDb.ReadAll();
             CourseCollectionView.ItemsSource = semesters;
         }
 
@@ -25,7 +26,7 @@ namespace TutoringAppProject.Pages.CourseCRUD
 
             await DisplayAlert("Show ID", key, "OK");
 
-            Course course = await App._courseDB.ReadById(key);
+            Course course = await App.CourseDb.ReadById(key);
             await Navigation.PushAsync(new CourseRegistration(course));
         }
 
@@ -33,7 +34,7 @@ namespace TutoringAppProject.Pages.CourseCRUD
         {
             var key = ((TappedEventArgs)e).Parameter.ToString();
 
-            await App._courseDB.Delete(key);
+            await App.CourseDb.Delete(key);
 
             await DisplayAlert("Delete", "Semester Deleted with key: " + key, "OK");
 

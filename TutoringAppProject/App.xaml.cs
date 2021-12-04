@@ -1,50 +1,36 @@
-﻿using System;
-using TutoringAppProject.DB;
+﻿using TutoringAppProject.DB;
 using TutoringAppProject.Models;
-using TutoringAppProject.Pages;
+using TutoringAppProject.Models.Users;
 using TutoringAppProject.Pages.Authentication;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject
 {
     public partial class App : Application
     {
-        public static AdminDb _adminDb = new AdminDb();
+        public static readonly AdminDb AdminDb = new AdminDb();
         
-        public static SemesterDb _semesterDB = new SemesterDb();
+        public static readonly SemesterDb SemesterDb = new SemesterDb();
 
-        public static CourseDb _courseDB = new CourseDb();
+        public static readonly CourseDb CourseDb = new CourseDb();
 
-        public static StudentDb _studentDB = new StudentDb();
+        public static readonly StudentDb StudentDb = new StudentDb();
         
-        public static TutorDb _tutorDB = new TutorDb();
+        public static readonly TutorDb TutorDb = new TutorDb();
         
-        public static TeacherDb _teacherDB = new TeacherDb();
+        public static readonly TeacherDb TeacherDb = new TeacherDb();
         
-        public static SessionDB _sessionDB = new SessionDB();
-        public static User _currentUser { get; set; }
+        public static readonly SessionDB SessionDb = new SessionDB();
         
-        // 
-
+        //global user when logged in
+        public static string CurrentKey;
+        
         public App()
         {
        
             InitializeComponent();
             MainPage = new NavigationPage(new Login());
 
-        }
-
-        protected override void OnStart()
-        {
-        }
-
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
         }
     }
 }
