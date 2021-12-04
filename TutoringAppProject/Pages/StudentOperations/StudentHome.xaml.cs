@@ -37,9 +37,18 @@ namespace TutoringAppProject.Pages.StudentOperations
             await Navigation.PushAsync(new SessionDetails(sessionSelected));
         }
 
-        private void key_tap_add_Tapped(object sender, EventArgs e)
+        private async void key_tap_add_Tapped(object sender, EventArgs e)
         {
+            string sessionKey = ((TappedEventArgs)e).Parameter.ToString();
+            Session sessionSelected = await App.SessionDb.ReadById(sessionKey);
 
+            List<string> appendedAttendance = sessionSelected.AttendingStudents.ToList();
+            appendedAttendance.Add(_student.FirstName);
+            sessionSelected.AttendingStudents = appendedAttendance.ToArray();
+
+            await App.SessionDb.Update(sessionSelected);
+
+            await DisplayAlert("Marked as Attending", "You've been added to the session!", "OK");
         }
     }
 }

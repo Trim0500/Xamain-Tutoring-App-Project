@@ -33,7 +33,7 @@
                                 </Image>
                                 <Image Source="edit.png" Grid.Column="4"  HeightRequest="20" WidthRequest="20">
                                     <Image.GestureRecognizers>
-                                        <TapGestureRecognizer x:Name="key_tap_add" Tapped="key_tap_add_Tapped" CommandParameter="{Binding key}"/>
+                                        <TapGestureRecognizer x:Name="key_tap_add" Tapped="key_tap_add_Tapped" CommandParameter="{Binding Key}"/>
                                     </Image.GestureRecognizers>
                                 </Image>
                             </Grid>
