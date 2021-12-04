@@ -11,5 +11,6 @@ namespace TutoringAppProject.Models.System
         public DateTime Date { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
+        public string[] AttendingStudents { get; set; }
     }
 }

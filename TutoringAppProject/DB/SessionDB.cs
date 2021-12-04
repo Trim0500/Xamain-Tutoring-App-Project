@@ -31,8 +31,8 @@ namespace TutoringAppProject.DB
                 SessionType = item.Object.SessionType,
                 Date = item.Object.Date,
                 StartTime = item.Object.StartTime,
-                EndTime = item.Object.EndTime
-                
+                EndTime = item.Object.EndTime,
+                AttendingStudents = item.Object.AttendingStudents
             }).ToList();
         }
 
@@ -45,8 +45,8 @@ namespace TutoringAppProject.DB
                 SessionType = item.Object.SessionType,
                 Date = item.Object.Date,
                 StartTime = item.Object.StartTime,
-                EndTime = item.Object.EndTime
-
+                EndTime = item.Object.EndTime,
+                AttendingStudents = item.Object.AttendingStudents
             }).FirstOrDefault(i => i.Key == key);
         }
 

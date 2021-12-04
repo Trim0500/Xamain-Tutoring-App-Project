@@ -31,8 +31,24 @@ namespace TutoringAppProject.DB
                 Username = item.Object.Username,
                 Password = item.Object.Password,
                 Role = item.Object.Role,
+                Courses = item.Object.Courses,
                 IsVerified = item.Object.IsVerified
             }).ToList();
+        }
+
+        public async Task<List<Student>> ReadAllByCourse(string courseName)
+        {
+            return (await _client.Child(nameof(Student)).OnceAsync<Student>()).Select(item => new Student
+            {
+                Key = item.Key,
+                FirstName = item.Object.FirstName,
+                LastName = item.Object.LastName,
+                Username = item.Object.Username,
+                Password = item.Object.Password,
+                Role = item.Object.Role,
+                Courses = item.Object.Courses,
+                IsVerified = item.Object.IsVerified
+            }).Where(s => s.Courses.Contains<string>(courseName)).ToList();
         }
 
         public async Task<Student> ReadById(string key)
@@ -45,6 +61,7 @@ namespace TutoringAppProject.DB
                 Username = item.Object.Username,
                 Password = item.Object.Password,
                 Role = item.Object.Role,
+                Courses = item.Object.Courses,
                 IsVerified = item.Object.IsVerified
 
             }).FirstOrDefault(i => i.Key == key);

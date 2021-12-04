@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TutoringAppProject.Models;
 using TutoringAppProject.Models.Enums;
 using TutoringAppProject.Models.System;
 using TutoringAppProject.Models.Users;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TutoringAppProject.Pages.TutorOperations
@@ -12,6 +14,8 @@ namespace TutoringAppProject.Pages.TutorOperations
     public partial class TutorSessionRegister
     {
         private Tutor _tutor = new Tutor();
+        private List<Student> students = new List<Student>();
+        private List<string> studentNames = new List<string>();
         private readonly bool _isUpdate;
         private readonly string _tutorKey;
 
@@ -53,6 +57,9 @@ namespace TutoringAppProject.Pages.TutorOperations
             _tutor = await App.TutorDb.ReadById(App.CurrentKey);
             SessionCourse.ItemsSource = _tutor.Courses;
             SessionCourse.SelectedIndex = 0;
+            string courseName = SessionCourse.SelectedItem.ToString();
+            students = await App.StudentDb.ReadAllByCourse(courseName);
+            StudentsList.ItemsSource = students;
         }
 
         private async void AddOrUpdateSession(object sender, EventArgs e)
@@ -87,14 +94,15 @@ namespace TutoringAppProject.Pages.TutorOperations
             }
 
             var type = RadioButtonGroupTutoring.IsChecked ? TutoringType.Group : TutoringType.Individual;
-            
+
             var session = new Session()
             {
                 Date = SessionDate.Date,
                 StartTime = SessionStartTime.Time,
                 EndTime = SessionEndTime.Time,
                 SessionType = type,
-                TutorKey = App.CurrentKey
+                TutorKey = App.CurrentKey,
+                AttendingStudents = studentNames.ToArray()
             };
 
             if (_isUpdate)
@@ -125,14 +133,33 @@ namespace TutoringAppProject.Pages.TutorOperations
            
         }
 
-        private void SessionCourse_SelectedIndexChanged(object sender, EventArgs e)
+        private async void SessionCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            var selectedCourse = SessionCourse.SelectedItem.ToString();
+
+            students = await App.StudentDb.ReadAllByCourse(selectedCourse);
+
+            StudentsList.ItemsSource = students;
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            var studentName = ((TappedEventArgs)e).Parameter.ToString();
 
+            var isInList = studentNames.Contains(studentName);
+
+            if (!isInList)
+            {
+                studentNames.Add(studentName);
+                ((Label)sender).TextColor = Color.Green;
+                await DisplayAlert("Adding Student", "Adding the student to the session", "OK");
+            }
+            else
+            {
+                studentNames.Add(studentName);
+                ((Label)sender).TextColor = Color.Black;
+                await DisplayAlert("Removing Student", "Removing the student from the session", "OK");
+            }
         }
     }
 }
