@@ -32,8 +32,24 @@ namespace TutoringAppProject.DB
                 Date = item.Object.Date,
                 StartTime = item.Object.StartTime,
                 EndTime = item.Object.EndTime,
+                CourseName = item.Object.CourseName,
                 AttendingStudents = item.Object.AttendingStudents
             }).ToList();
+        }
+
+        public async Task<List<Session>> ReadAllByCourseName(List<string> courseNames)
+        {
+            return (await _client.Child(nameof(Session)).OnceAsync<Session>()).Select(item => new Session
+            {
+                Key = item.Key,
+                TutorKey = item.Object.TutorKey,
+                SessionType = item.Object.SessionType,
+                Date = item.Object.Date,
+                StartTime = item.Object.StartTime,
+                EndTime = item.Object.EndTime,
+                CourseName = item.Object.CourseName,
+                AttendingStudents = item.Object.AttendingStudents
+            }).Where(s => courseNames.Contains(s.CourseName)).ToList();
         }
 
         public async Task<Session> ReadById(string key)
@@ -46,6 +62,7 @@ namespace TutoringAppProject.DB
                 Date = item.Object.Date,
                 StartTime = item.Object.StartTime,
                 EndTime = item.Object.EndTime,
+                CourseName = item.Object.CourseName,
                 AttendingStudents = item.Object.AttendingStudents
             }).FirstOrDefault(i => i.Key == key);
         }

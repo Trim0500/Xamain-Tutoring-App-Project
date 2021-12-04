@@ -71,22 +71,6 @@ namespace TutoringAppProject.Pages.TutorOperations
                 return;
             }
             
-            /*
-            // check if time is in the future
-            if (SessionStartTime.Time < DateTime.Now.TimeOfDay)
-            {
-                await DisplayAlert("Error", "Please select a start time in the future", "OK");
-                return;
-            }
-            
-            // check if time is in the future
-            if (SessionEndTime.Time < DateTime.Now.TimeOfDay)
-            {
-                await DisplayAlert("Error", "Please select a time in the future", "OK");
-                return;
-            }
-            */
-            // check if start time is before end time
             if (SessionStartTime.Time > SessionEndTime.Time)
             {
                 await DisplayAlert("Error", "Please select a valid time range", "OK");
@@ -102,6 +86,7 @@ namespace TutoringAppProject.Pages.TutorOperations
                 EndTime = SessionEndTime.Time,
                 SessionType = type,
                 TutorKey = App.CurrentKey,
+                CourseName = SessionCourse.SelectedItem.ToString(),
                 AttendingStudents = studentNames.ToArray()
             };
 

@@ -5,9 +5,42 @@
              x:Class="TutoringAppProject.Pages.StudentOperations.StudentHome">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
+            <Label Text="Hello Student! Here are the availbale Sessions:"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand" />
+            <CollectionView x:Name="SessionsList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ScrollView>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding CourseName}" BackgroundColor="White" TextColor="Black" FontSize="Small"/>
+                                <Label Grid.Column="1" Text="{Binding StartTime}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
+                                <Label Grid.Column="2" Text="{Binding EndTime}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
+                                <Image Source="verify.png" Grid.Column="3"  HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="key_tap_details" Tapped="key_tap_details_Tapped" CommandParameter="{Binding Key}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Source="edit.png" Grid.Column="4"  HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="key_tap_add" Tapped="key_tap_add_Tapped" CommandParameter="{Binding key}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </ScrollView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
