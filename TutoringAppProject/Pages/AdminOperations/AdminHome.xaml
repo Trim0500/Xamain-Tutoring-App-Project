@@ -27,8 +27,8 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout>
-        <Label Text="Welcome to the Admin Page!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-        <Button x:Name="SemesterList" Margin="10,0,10,5" Text="Semester List" BackgroundColor="LightBlue"  FontSize="Medium" Clicked="Button_OnClicked_Semester_List"/>
-        <Button x:Name="CourseList" Margin="10,0,10,5" Text="Course List" BackgroundColor="LightBlue" FontSize="Medium" Clicked="Button_OnClicked_Class_List"/>
+        <Label Text="Welcome to the Admin Page!" FontAttributes="Italic" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+        <Button x:Name="SemesterList" Margin="10,0,10,5" Text="Semester List" BackgroundColor="LightBlue" CornerRadius="100" FontSize="Medium" Clicked="Button_OnClicked_Semester_List"/>
+        <Button x:Name="CourseList" Margin="10,0,10,5" Text="Course List" BackgroundColor="LightBlue" CornerRadius="100" FontSize="Medium" Clicked="Button_OnClicked_Class_List"/>
     </StackLayout>
 </ContentPage>

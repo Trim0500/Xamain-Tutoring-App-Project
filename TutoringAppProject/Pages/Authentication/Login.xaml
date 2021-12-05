@@ -9,7 +9,8 @@
                 <Label Text="Welcome to the Future of Tutoring!"
                        FontSize="Large"
                        VerticalOptions="Center"
-                       HorizontalOptions="Center" />
+                       HorizontalOptions="Center" 
+                       FontAttributes="Italic"/>
                 <Image Source="tutoring.jfif" VerticalOptions="Start"/>
                 <Entry x:Name="UserEdit"
                        Margin="10,0,10,5"
@@ -25,12 +26,14 @@
                         Text="Login"
                         Font="large"
                         BackgroundColor="LightBlue"
+                        CornerRadius="100"
                         Clicked="login_btn_Clicked"/>
                 <Button x:Name="RegisterBtn"
                         Margin="10,0,10,5"
                         Text="Register"
                         Font="large"
                         BackgroundColor="LightBlue"
+                        CornerRadius="100"
                         Clicked="register_btn_Clicked"/>
                 <Grid>
                     <Grid.ColumnDefinitions>

@@ -41,7 +41,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button x:Name="AddCourse" Text="Add" FontSize="Large" Clicked="Button_OnClicked"/>
+            <Button x:Name="AddCourse" Text="Add" FontSize="Large" CornerRadius="100" BackgroundColor="LightBlue" Clicked="Button_OnClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

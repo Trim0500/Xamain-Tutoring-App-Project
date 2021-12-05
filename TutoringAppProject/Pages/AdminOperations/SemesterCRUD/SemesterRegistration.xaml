@@ -6,11 +6,11 @@
              BackgroundImageSource="background2.jpg">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Semester Add Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Register a Semester" FontSize="25" FontAttributes="Italic" HorizontalOptions="Center" VerticalOptions="Center" />
             <Entry x:Name="SemesterCode" Placeholder="Semester Code" FontSize="Large"></Entry>
             <Entry x:Name="SemesterSeason" Placeholder="Semester Season" FontSize="Large"></Entry>
             <Entry x:Name="SemesterYear" Placeholder="Semester Year" FontSize="Large"></Entry>
-            <Button x:Name="SemesterAddUpdateButton" Text="Add Semester" Clicked="AddSemester" VerticalOptions="End" />
+            <Button x:Name="SemesterAddUpdateButton" CornerRadius="100" BackgroundColor="LightBlue" Text="Add Semester" Clicked="AddSemester" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

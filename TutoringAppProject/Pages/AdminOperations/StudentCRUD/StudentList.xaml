@@ -2,9 +2,11 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.StudentCRUD.StudentList">
+             x:Class="TutoringAppProject.Pages.StudentCRUD.StudentList"
+             BackgroundImageSource="background2.jpg">
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="Student List" FontSize="25" FontAttributes="Italic" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
             <CollectionView  x:Name="StudentCollectionView">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -50,7 +52,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button x:Name="AddOrUpdateCourse" Text="Add" FontSize="Large" Clicked="Button_OnClicked"/>
+        <Button x:Name="AddOrUpdateCourse" CornerRadius="100" BackgroundColor="LightBlue" Text="Add" FontSize="Large" Clicked="Button_OnClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

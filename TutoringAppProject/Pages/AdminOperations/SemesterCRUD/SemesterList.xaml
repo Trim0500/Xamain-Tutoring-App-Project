@@ -6,7 +6,7 @@
              BackgroundImageSource="background2.jpg">
     <ContentPage.Content>
        <StackLayout>
-        <Label Text="Welcome to Infinity Tutoring!" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+        <Label Text="Semester List" FontSize="25" FontAttributes="Italic" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
         <!-- Provide the semester list here -->
         <CollectionView  x:Name="SemesterCollectionView" ItemsSource="{Binding semesters}">
             <CollectionView.ItemTemplate>
@@ -47,7 +47,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button x:Name="AddSemester" Text="Add" FontSize="Large" Clicked="Button_OnClicked"/>
+            <Button x:Name="AddSemester" Text="Add" CornerRadius="100" BackgroundColor="LightBlue" FontSize="Large" Clicked="Button_OnClicked"/>
        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

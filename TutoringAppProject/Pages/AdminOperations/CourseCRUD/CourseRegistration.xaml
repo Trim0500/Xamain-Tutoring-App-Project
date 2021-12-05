@@ -6,11 +6,11 @@
              BackgroundImageSource="background2.jpg">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Course Registration Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Course Registration Page" FontSize="25" HorizontalTextAlignment="Center" FontAttributes="Italic" HorizontalOptions="Center" VerticalOptions="Center" />
             <Entry x:Name="SemesterCode" Placeholder="Semester Code" FontSize="Large"></Entry>
             <Entry x:Name="CourseCode" Placeholder="Course Code" FontSize="Large"></Entry>
             <Entry x:Name="CourseName" Placeholder="Course Name" FontSize="Large"></Entry>
-            <Button x:Name="CourseAddUpdateButton" Text="Add Course" Clicked="AddOrUpdateCourse" VerticalOptions="End" />
+            <Button x:Name="CourseAddUpdateButton" Text="Add Course" Clicked="AddOrUpdateCourse" CornerRadius="100" BackgroundColor="LightBlue" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -2,10 +2,12 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.TutorCRUD.TutorRegistration">
+             x:Class="TutoringAppProject.Pages.TutorCRUD.TutorRegistration"
+             BackgroundImageSource="background2.jpg">
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Tutor Add Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Register Tutor" FontSize="25" FontAttributes="Italic" HorizontalOptions="Center" VerticalOptions="Center" />
             <Entry x:Name="TutorFirstName" Placeholder="FirstName" FontSize="Large"></Entry>
             <Entry x:Name="TutorLastName" Placeholder="LastName" FontSize="Large"></Entry>
             <Entry x:Name="TutorUsername" Placeholder="Username" FontSize="Large"></Entry>
@@ -25,7 +27,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
             
-            <Button x:Name="TutorAddUpdateButton" Text="Add Tutor" Clicked="AddTutor" VerticalOptions="End" />
+            <Button x:Name="TutorAddUpdateButton" CornerRadius="100" BackgroundColor="LightBlue" Text="Add Tutor" Clicked="AddTutor" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
