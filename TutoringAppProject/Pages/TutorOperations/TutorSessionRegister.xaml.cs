@@ -15,7 +15,7 @@ namespace TutoringAppProject.Pages.TutorOperations
     {
         private Tutor _tutor = new Tutor();
         private List<Student> students = new List<Student>();
-        private List<string> studentNames = new List<string>();
+        private readonly List<string> studentNames = new List<string>();
         private readonly bool _isUpdate;
         private readonly string _tutorKey;
 
@@ -57,11 +57,10 @@ namespace TutoringAppProject.Pages.TutorOperations
             _tutor = await App.TutorDb.ReadById(App.CurrentKey);
             SessionCourse.ItemsSource = _tutor.Courses;
             SessionCourse.SelectedIndex = 0;
-            string courseName = SessionCourse.SelectedItem.ToString();
+            var courseName = SessionCourse.SelectedItem.ToString();
             students = await App.StudentDb.ReadAllByCourse(courseName);
             StudentsList.ItemsSource = students;
         }
-
         private async void AddOrUpdateSession(object sender, EventArgs e)
         {
             // check if date is in the future

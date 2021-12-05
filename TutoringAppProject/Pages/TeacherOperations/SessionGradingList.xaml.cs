@@ -19,6 +19,9 @@ namespace TutoringAppProject.Pages.TeacherOperations
         
         protected override async void OnAppearing()
         {
+            // get teacher info
+            var teacher = await App.TeacherDb.ReadById(App.CurrentKey);
+            // get all sessions
             var sessions = await App.SessionDb.ReadAll();
             SessionCollectionView.ItemsSource = sessions;
             

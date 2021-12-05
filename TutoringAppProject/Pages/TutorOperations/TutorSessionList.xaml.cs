@@ -14,7 +14,8 @@ namespace TutoringAppProject.Pages.TutorOperations
 
         protected override async void OnAppearing()
         {
-            var sessions = await App.SessionDb.ReadAll();
+            var sessions = await App.SessionDb.GetAllSessionsByTutor(App.CurrentKey);
+            
             SessionCollectionView.ItemsSource = sessions;
             
         }

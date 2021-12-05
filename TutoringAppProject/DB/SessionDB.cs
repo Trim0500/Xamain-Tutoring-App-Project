@@ -15,9 +15,9 @@ namespace TutoringAppProject.DB
             "https://xamarin-tutoring-students-default-rtdb.firebaseio.com/"
         );
 
-        public async Task<bool> Create(Session student)
+        public async Task<bool> Create(Session session)
         {
-            var data = await _client.Child(nameof(Session)).PostAsync(JsonConvert.SerializeObject(student));
+            var data = await _client.Child(nameof(Session)).PostAsync(JsonConvert.SerializeObject(session));
 
             return !string.IsNullOrEmpty(data.Key);
         }
@@ -62,6 +62,16 @@ namespace TutoringAppProject.DB
                 AttendingStudents = item.Object.AttendingStudents,
                 TutorGrade = item.Object.TutorGrade
             }).Where(s => courseNames.Contains(s.CourseName)).ToList();
+        }
+        
+        //select all sessions where a tutor is part of the class
+        public async Task<List<Session>> GetAllSessionsByTutor(string tutorId)
+        {
+            var sessions = await _client.Child(nameof(Session)).OnceAsync<Session>();
+
+            var sessionList = sessions.Where(s => s.Object.TutorKey == tutorId).Select(s => s.Object).ToList();
+
+            return sessionList;
         }
 
         public async Task<Session> ReadById(string key)

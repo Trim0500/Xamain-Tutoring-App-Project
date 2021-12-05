@@ -1,4 +1,5 @@
-﻿using TutoringAppProject.Models.Enums;
+﻿using System.Collections.Generic;
+using TutoringAppProject.Models.Enums;
 
 namespace TutoringAppProject.Models.Users
 {
