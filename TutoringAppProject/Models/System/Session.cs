@@ -13,5 +13,7 @@ namespace TutoringAppProject.Models.System
         public TimeSpan EndTime { get; set; }
         public string CourseName { get; set; }
         public string[] AttendingStudents { get; set; }
+        
+        public int TutorGrade { get; set; }
     }
 }

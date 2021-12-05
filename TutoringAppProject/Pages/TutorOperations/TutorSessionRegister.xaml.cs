@@ -52,7 +52,7 @@ namespace TutoringAppProject.Pages.TutorOperations
 
         }
 
-        public async void GetTutor()
+        private async void GetTutor()
         {
             _tutor = await App.TutorDb.ReadById(App.CurrentKey);
             SessionCourse.ItemsSource = _tutor.Courses;

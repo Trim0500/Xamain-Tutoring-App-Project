@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TutoringAppProject.Models.Enums;
 using TutoringAppProject.Models.System;
 using TutoringAppProject.Models.Users;
 using Xamarin.Forms;
@@ -93,6 +94,7 @@ namespace TutoringAppProject.Pages.TeacherCRUD
                 LastName = TeacherLastName.Text,
                 Username = TeacherUsername.Text,
                 Password = TeacherPassword.Text,
+                Role = RoleType.Teacher,
                 Courses = _teacherCourses.ToArray(),
                 IsVerified = true
             };
@@ -100,26 +102,28 @@ namespace TutoringAppProject.Pages.TeacherCRUD
             if (_isUpdate)
             {
                 teacher.Key = teacherKey;
-                if (await App.TeacherDb.Create(teacher))
+                if (await App.TeacherDb.Update(teacher))
                 {
-                    await DisplayAlert("Success", "Student added", "OK");
+                    await DisplayAlert("Success", "Teacher updated successfully", "OK");
                     await Navigation.PopAsync();
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Student not added", "OK");
+                    await DisplayAlert("Error", "Teacher update failed", "OK");
                 }
+                    
+               
             }
             else
             {
-                if (await App.TeacherDb.Update(teacher))
+                if (await App.TeacherDb.Create(teacher))
                 {
-                    await DisplayAlert("Success", "updated Teacher", "OK");
+                    await DisplayAlert("Success", "Teacher added", "OK");
                     await Navigation.PopAsync();
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Teacher not updated", "OK");
+                    await DisplayAlert("Error", "Teacher not added", "OK");
                 }
             }
             

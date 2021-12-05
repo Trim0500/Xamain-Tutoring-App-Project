@@ -21,6 +21,16 @@ namespace TutoringAppProject.DB
 
             return !string.IsNullOrEmpty(data.Key);
         }
+        
+        //select all sessions from a tutor
+        public async Task<List<Session>> GetAllSessions(string tutorId)
+        {
+            var sessions = await _client.Child(nameof(Session)).OnceAsync<Session>();
+
+            var sessionList = sessions.Where(s => s.Object.TutorKey == tutorId).Select(s => s.Object).ToList();
+
+            return sessionList;
+        }
 
         public async Task<List<Session>> ReadAll()
         {
@@ -33,7 +43,8 @@ namespace TutoringAppProject.DB
                 StartTime = item.Object.StartTime,
                 EndTime = item.Object.EndTime,
                 CourseName = item.Object.CourseName,
-                AttendingStudents = item.Object.AttendingStudents
+                AttendingStudents = item.Object.AttendingStudents,
+                TutorGrade = item.Object.TutorGrade
             }).ToList();
         }
 
@@ -48,7 +59,8 @@ namespace TutoringAppProject.DB
                 StartTime = item.Object.StartTime,
                 EndTime = item.Object.EndTime,
                 CourseName = item.Object.CourseName,
-                AttendingStudents = item.Object.AttendingStudents
+                AttendingStudents = item.Object.AttendingStudents,
+                TutorGrade = item.Object.TutorGrade
             }).Where(s => courseNames.Contains(s.CourseName)).ToList();
         }
 
@@ -63,7 +75,8 @@ namespace TutoringAppProject.DB
                 StartTime = item.Object.StartTime,
                 EndTime = item.Object.EndTime,
                 CourseName = item.Object.CourseName,
-                AttendingStudents = item.Object.AttendingStudents
+                AttendingStudents = item.Object.AttendingStudents,
+                TutorGrade = item.Object.TutorGrade
             }).FirstOrDefault(i => i.Key == key);
         }
 

@@ -8,6 +8,7 @@
             <Label Text="Hello, world!"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand" />
+            <Button Text="Session Grading" Clicked="Button_OnClicked_SessionGrading"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

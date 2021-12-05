@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TutoringAppProject.Models;
+using TutoringAppProject.Models.Enums;
 using TutoringAppProject.Models.System;
 using TutoringAppProject.Models.Users;
 using Xamarin.Forms;
@@ -92,6 +93,7 @@ namespace TutoringAppProject.Pages.TutorCRUD
                 LastName = TutorLastName.Text,
                 Username = TutorUsername.Text,
                 Password = TutorPassword.Text,
+                Role = RoleType.Tutor,
                 Courses = _tutorCourses.ToArray(),
                 IsVerified = true
             };
