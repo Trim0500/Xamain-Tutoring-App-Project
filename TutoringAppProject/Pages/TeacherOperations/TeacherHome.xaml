@@ -9,6 +9,10 @@
                      Text="View Tutors' Hours"
                      Clicked="TutorToolbarItem_Clicked">
         </ToolbarItem>
+        <ToolbarItem x:Name="StudentToolbarItem"
+                     Text="View Students' Hours"
+                     Clicked="StudentToolbarItem_Clicked">
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

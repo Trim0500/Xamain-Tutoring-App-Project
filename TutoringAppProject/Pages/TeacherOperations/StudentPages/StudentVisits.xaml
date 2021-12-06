@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringAppProject.Pages.TeacherOperations.StudentPages.StudentVisits">
+    <ContentPage.Content>
+        <StackLayout>
+            <Picker x:Name="CourseChoice" ItemsSource="{Binding teacherCourses}" SelectedIndexChanged="CourseChoice_SelectedIndexChanged" />
+            <CollectionView  x:Name="StudentCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="{Binding FirstName}" BackgroundColor="White" TextColor="Black" FontSize="Small"/>
+                                <Label Grid.Column="1" Text="{Binding LastName}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
+                                <Image Source="verify.jpg" Grid.Column="2" HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="key_tap_verify" Tapped="key_tap_verify_Tapped" CommandParameter="{Binding Key}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button x:Name="GoBack" Text="Return" FontSize="Large" Clicked="GoBack_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
