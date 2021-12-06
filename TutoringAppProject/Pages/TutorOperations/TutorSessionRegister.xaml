@@ -2,10 +2,11 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.TutorOperations.TutorSessionRegister">
+             x:Class="TutoringAppProject.Pages.TutorOperations.TutorSessionRegister"
+             BackgroundImageSource="background2.jpg">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Semester Add Page" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Register Semester" FontSize="25" FontAttributes="Italic" HorizontalOptions="Center" VerticalOptions="Center" />
             <RadioButton x:Name="RadioButtonGroupTutoring" Content="Group Tutoring" GroupName="TutoringType"/>
             <RadioButton x:Name="RadioButtonIndividualTutoring" Content="Individual Tutoring" GroupName="TutoringType"/>
             <DatePicker x:Name="SessionDate" Format="dd-MM-yyyy"/>
@@ -25,7 +26,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button x:Name="SessionAddOrUpdateButton" Text="Add Session" Clicked="AddOrUpdateSession" VerticalOptions="End" />
+            <Button x:Name="SessionAddOrUpdateButton" CornerRadius="100" BackgroundColor="LightBlue" Text="Add Session" Clicked="AddOrUpdateSession" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

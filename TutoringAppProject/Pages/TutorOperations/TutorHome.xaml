@@ -2,15 +2,19 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutoringAppProject.Pages.TutorOperations.TutorHome">
+             x:Class="TutoringAppProject.Pages.TutorOperations.TutorHome"
+             BackgroundImageSource="background2.jpg">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello Tutor, world!"
+            <Label Text="Welcome Tutor!"
                    VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+                   HorizontalOptions="CenterAndExpand" 
+                   FontAttributes="Italic"/>
             <Button Text="Tutoring Session"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="LightBlue"
+                    CornerRadius="100"
                     Clicked="Button_OnClicked_TutoringList"/>
         </StackLayout>
     </ContentPage.Content>
