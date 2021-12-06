@@ -4,6 +4,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TutoringAppProject.Pages.TeacherOperations.TeacherHome"
              BackgroundImageSource="background2.jpg">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="TutorToolbarItem"
+                     Text="View Tutors' Hours"
+                     Clicked="TutorToolbarItem_Clicked">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to the Teacher Home"

@@ -16,5 +16,10 @@ namespace TutoringAppProject.Pages.TeacherOperations
         {
             await Navigation.PushAsync(new SessionGradingList());
         }
+
+        private async void TutorToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TutorPages.TutorHours());
+        }
     }
 }

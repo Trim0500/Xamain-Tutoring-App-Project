@@ -32,7 +32,8 @@ namespace TutoringAppProject.DB
                 Username = item.Object.Username,
                 Password = item.Object.Password,
                 Role = item.Object.Role,
-                IsVerified = item.Object.IsVerified
+                IsVerified = item.Object.IsVerified,
+                Courses = item.Object.Courses,
             }).ToList();
         }
 
@@ -46,9 +47,8 @@ namespace TutoringAppProject.DB
                 Username = item.Object.Username,
                 Password = item.Object.Password,
                 Role = item.Object.Role,
-                IsVerified = item.Object.IsVerified
-                
-
+                IsVerified = item.Object.IsVerified,
+                Courses = item.Object.Courses
             }).FirstOrDefault(i => i.Key == key);
         }
 
