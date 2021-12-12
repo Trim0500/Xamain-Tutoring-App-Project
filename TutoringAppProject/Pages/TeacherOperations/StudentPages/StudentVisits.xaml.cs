@@ -68,7 +68,7 @@ namespace TutoringAppProject.Pages.TeacherOperations.StudentPages
 
             var student = await App.StudentDb.ReadById(key);
 
-            await Navigation.PushAsync(new StudentDetails(student));
+            await Navigation.PushAsync(new StudentDetails(student, CourseChoice.SelectedItem.ToString()));
         }
     }
 }
