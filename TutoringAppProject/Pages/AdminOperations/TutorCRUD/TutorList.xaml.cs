@@ -1,6 +1,7 @@
 ﻿using System;
 using TutoringAppProject.Models;
 using TutoringAppProject.Models.Users;
+using TutoringAppProject.Pages.AdminOperations.TutorCRUD;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -73,6 +74,13 @@ namespace TutoringAppProject.Pages.TutorCRUD
             {
                 await DisplayAlert("Verify", "Could not verify Teacher", "OK");
             }
+        }
+
+        private async void Key_tap_grade_OnTapped(object sender, EventArgs e)
+        {
+            var key = ((TappedEventArgs)e).Parameter.ToString();
+            var tutor = await App.TutorDb.ReadById(key);
+            await Navigation.PushAsync(new TutorGradeList(tutor));
         }
     }
 }

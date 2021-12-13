@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringAppProject.Pages.AdminOperations.TutorCRUD.TutorGradeList"
+             BackgroundImageSource="background2.jpg">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Tutor Session Grades" FontSize="25" FontAttributes="Italic" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+            <CollectionView  x:Name="TutorGradeCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding CourseName}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
+                                <Label Grid.Column="1" Text="{Binding SessionType}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
+                                <Label Grid.Column="2" Text="{Binding TutorGrade}" BackgroundColor="White" TextColor="Gray" FontSize="Small"/>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button x:Name="GoBack" Text="Return" FontSize="Large" Clicked="GoBack_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

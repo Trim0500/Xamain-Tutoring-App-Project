@@ -69,7 +69,18 @@ namespace TutoringAppProject.DB
         {
             var sessions = await _client.Child(nameof(Session)).OnceAsync<Session>();
 
-            var sessionList = sessions.Where(s => s.Object.TutorKey == tutorId).Select(s => s.Object).ToList();
+            var sessionList = sessions.Select(item => new Session
+            {
+                Key = item.Key,
+                TutorKey = item.Object.TutorKey,
+                SessionType = item.Object.SessionType,
+                Date = item.Object.Date,
+                StartTime = item.Object.StartTime,
+                EndTime = item.Object.EndTime,
+                CourseName = item.Object.CourseName,
+                AttendingStudents = item.Object.AttendingStudents,
+                TutorGrade = item.Object.TutorGrade
+            }).Where(s => s.TutorKey == tutorId).ToList();
 
             return sessionList;
         }
