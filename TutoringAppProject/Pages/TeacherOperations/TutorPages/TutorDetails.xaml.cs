@@ -28,12 +28,22 @@ namespace TutoringAppProject.Pages.TeacherOperations.TutorPages
         {
             // InitializeComponent();
             _tutor = tutor;
-
+            InitializeComponent();
             GenerateInterface();
         }
 
-        public void GenerateInterface()
+        public async void GenerateInterface()
         {
+            long totaltime = 0;
+            var list = await App.SessionDb.GetAllSessionsByTutor(_tutor.Key);
+            var sortedListByTutor = list.Where(x => x.TutorKey == _tutor.Key).ToList();
+            foreach(var i in sortedListByTutor)
+            {
+                totaltime += i.EndTime.Ticks - i.StartTime.Ticks;
+            }
+
+            DateTime date = new DateTime(totaltime);
+
             nameLabel = new Label
             {
                 Text = _tutor.FirstName + " " + _tutor.LastName,
@@ -43,14 +53,8 @@ namespace TutoringAppProject.Pages.TeacherOperations.TutorPages
 
             hoursGathered = new Label
             {
-                Text = "Total Hours Accumulated: ",
-                HorizontalTextAlignment = TextAlignment.Center,
-                VerticalTextAlignment = TextAlignment.Center
-            };
-
-            hoursRemaining = new Label
-            {
-                Text = "Remaing Hours Accumulated: ",
+                Text = "Forecasted tutoring time: "
+                + date.Hour + "h and " + date.Minute + " min",
                 HorizontalTextAlignment = TextAlignment.Center,
                 VerticalTextAlignment = TextAlignment.Center
             };
@@ -69,7 +73,6 @@ namespace TutoringAppProject.Pages.TeacherOperations.TutorPages
                 {
                     nameLabel,
                     hoursGathered,
-                    hoursRemaining,
                     goBackBtn
                 }
             };
